@@ -1,0 +1,50 @@
+As this point, I know Project class contains an array of ToDoItem objects.
+
+    Project 
+        |
+    contains
+        |
+    ToDoItem
+
+I'm planning on ProjectCards containing ToDoItemCards. 
+The card objects manipulate the DOM:
+
+    AllProjectsDiv
+        |
+    contains
+        |
+    ProjectCards
+        |
+    contains
+        |
+    ToDoItemCards
+
+So I end up with this coupling diagram:
+
+                            AllProjectsDiv
+                                |
+                            contains
+                                |
+    Project  ---- ID ----   ProjectCards
+        |                       |
+    contains                contains
+        |                       |
+    ToDoItem ---- ID ----   ToDoItemCards
+
+The tightest coupling is between the item and its card. 
+For example, if Project needs a new property that needs to be seen 
+on the DOM, both Project and Project Card must be updated.
+
+The containing relationship isn't as tightly coupled. ToDoItem won't be 
+affected too much by changes to the Project class. 
+
+The left side is what will be the stored data.
+
+The Cards will have functions (if necessary) to: 
+- Create contained cards and items
+- Read data from items 
+- Update the data of the item
+- Delete the item, containing cards and itself
+Cards can find its item using the unique ID in both the item and its card.
+
+No functions needed in the stored data, only in the Cards.
