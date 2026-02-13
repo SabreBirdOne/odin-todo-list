@@ -1,11 +1,8 @@
 import ToDoItem from "./toDoItem.js";
+import ToDoItemCard from "./toDoItemCard.js"
 import Project from "./project.js";
-import { format } from "date-fns";
 
 let toDoItem_1 = new ToDoItem();
-
-console.log(toDoItem_1);
-console.log(format(toDoItem_1.dueDate, "yyyy-MM-dd H:m:s"));
 
 let toDoItem_2 = new ToDoItem(
     "Eat more sushi", 
@@ -26,3 +23,10 @@ let projectNemo = new Project("Nemo test run 1", [
 ]);
 
 console.log(projectNemo);
+
+let toDoItemCard_1 = new ToDoItemCard(toDoItem_1.id);
+let body = document.querySelector("body");
+body.appendChild(toDoItemCard_1.div);
+
+console.log(toDoItemCard_1);
+toDoItemCard_1.updateCard(toDoItem_3);
