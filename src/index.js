@@ -1,4 +1,5 @@
-import {ToDoItem, checkListManager} from "./toDoItem.js";
+import ToDoItem from "./toDoItem.js";
+import checkListManager from "./checkListManager.js"
 import ToDoItemCard from "./toDoItemCard.js"
 import Project from "./project.js";
 
