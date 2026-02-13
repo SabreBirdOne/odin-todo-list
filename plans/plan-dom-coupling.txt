@@ -62,3 +62,7 @@ Updated diagram:
     contains                contains
         |                       |
     ToDoItem <-- knows --   ToDoItemCards
+
+Program flow:
+Initial page load > managers > create/update data
+Button presses on cards > managers > data
