@@ -48,3 +48,17 @@ The Cards will have functions (if necessary) to:
 Cards can find its item using the unique ID in both the item and its card.
 
 No functions needed in the stored data, only in the Cards.
+
+Updated diagram: 
+
+                            AllProjectsDiv
+                            (not implemeneted)
+                                |
+                            contains
+                                |
+    Project  ---- ID ----   ProjectCards 
+        |                   (not implemented)
+        |                       |
+    contains                contains
+        |                       |
+    ToDoItem <-- knows --   ToDoItemCards
