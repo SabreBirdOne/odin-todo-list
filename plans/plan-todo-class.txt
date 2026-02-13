@@ -12,3 +12,5 @@ class ToDoItem: // Responsibility: store a todo-item's data.
     
     String notes,
     Object checklist: String checklist item: Boolean completed
+
+    String id: unique toDoItem identifier
