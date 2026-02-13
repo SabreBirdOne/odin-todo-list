@@ -29,4 +29,4 @@ let body = document.querySelector("body");
 body.appendChild(toDoItemCard_1.div);
 
 console.log(toDoItemCard_1);
-toDoItemCard_1.updateCard(toDoItem_3);
+toDoItemCard_1.updateCard(toDoItem_2);
