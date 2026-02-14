@@ -5,7 +5,7 @@ export default class ToDoItemCard {
         this.div = document.createElement("div");
         this.div.dataset.itemID = itemID;
 
-        let title = document.createElement("h2");
+        let title = document.createElement("h4");
         let dueDate = document.createElement("p");
         let priority = document.createElement("p");
         
@@ -15,18 +15,14 @@ export default class ToDoItemCard {
         priority.classList.add("priority");
 
         for (const element of [title, dueDate, priority]){
-            this.div.appendChild(element)
+            this.div.appendChild(element);
         }
     }
 
     updateCard(toDoItem){
         this.div.dataset.itemID = toDoItem["id"];
-        for (const element of ["title", "dueDate", "priority"]){
-            let text = toDoItem[element];
-            if (element === "dueDate"){
-                text = format(text, "yyyy-MM-dd H:m:s");
-            }
-            this.div.querySelector(`.${element}`).textContent = `${element}: ${text}`;
-        }
+        this.div.querySelector(".title").textContent = `Title: ${toDoItem["title"]}`;
+        this.div.querySelector(".dueDate").textContent = `Due Date: ${format(toDoItem["dueDate"], "yyyy-MM-dd H:m:s")}`;
+        this.div.querySelector(".priority").textContent = `Priority: ${toDoItem["priority"]}`;
     }
 }

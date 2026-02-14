@@ -13,7 +13,6 @@ checkListManager.addCheckListItem(toDoItem_3, "Contact General Resource");
 
 checkListManager.toggleCheckListItem(toDoItem_3, "Join UPEO");
 checkListManager.removeCheckListItem(toDoItem_3, "Have human empathy");
-console.log(toDoItem_3.checklist);
 
 let projectNemo = new Project("Nemo", "Default project", [
     toDoItem_1, toDoItem_2, toDoItem_3

@@ -59,10 +59,25 @@ Updated diagram:
     Project  ---- ID ----   ProjectCards 
         |                   (not implemented)
         |                       |
-    contains                contains
+    contains                knows
         |                       |
+                                V
     ToDoItem <-- knows --   ToDoItemCards
 
 Program flow:
-Initial page load > managers > create/update data
-Button presses on cards > managers > data
+Initial page load > managers > create/update data > update Cards
+Button presses on cards > managers > data > update Cards
+
+Major Update: 
+When implementing Project Cards, I faced a decision: 
+Do I contain the ToDoItemCard objects, or just append the divs inside 
+each card into the project card div? 
+
+So I decided that the Cards as JS objects shouldn't have to exist. 
+The cards are already part of the DOM. 
+
+What I really need are modules that manipulate the DOM, 
+not objects to represent them. 
+
+So now, I'm salvaging the ToDoItemCard class, and abandon the 
+ProjectCard class. 
