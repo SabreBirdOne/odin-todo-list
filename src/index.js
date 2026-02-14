@@ -1,5 +1,7 @@
 import ToDoItem from "./toDoItem.js";
 import checkListManager from "./checkListManager.js"
+
+import {updateToDoItemCard} from "./cardUpdaters.js"
 import {createToDoItemCard} from "./cardFactories.js"
 import Project from "./project.js";
 
@@ -20,3 +22,6 @@ let projectNemo = new Project("Nemo", "Default project", [
 
 console.log(projectNemo);
 
+const card = createToDoItemCard(toDoItem_1.id);
+updateToDoItemCard(toDoItem_3, card)
+document.querySelector("body").appendChild(card);

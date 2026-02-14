@@ -84,12 +84,13 @@ Button presses on cards > managers > data > update Cards
 
 Updated diagram: 
 
-
     Project  <---\
         |         \               
     contains       +--->  Bunch of bundles idk <---> DOM
         |         /
     ToDoItem <---/
+
+Data objects and DOM elements find each other with app-wide unique IDs.
 
 So, what's going to be inside this bunch of bundles?
 - card factories: 
