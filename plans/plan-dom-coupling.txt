@@ -96,3 +96,10 @@ So, what's going to be inside this bunch of bundles?
 - card factories: 
     they don't make Card objects, they make divs as "cards" and return them. 
     something else will populate the data into these cards.
+
+- card updaters:
+    they update the "card" in the DOM with data from objects in the JS (left side of diagram).
+    Issues:
+        + But how do they know which card or object to pick from?
+        + And there are no restrictions to what the DOM shows vs what's in the JS objects. 
+        For example, todos can appear in the wrong projects in the DOM.
