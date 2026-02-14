@@ -64,10 +64,6 @@ Updated diagram:
                                 V
     ToDoItem <-- knows --   ToDoItemCards
 
-Program flow:
-Initial page load > managers > create/update data > update Cards
-Button presses on cards > managers > data > update Cards
-
 Major Update: 
 When implementing Project Cards, I faced a decision: 
 Do I contain the ToDoItemCard objects, or just append the divs inside 
@@ -81,3 +77,21 @@ not objects to represent them.
 
 So now, I'm salvaging the ToDoItemCard class, and abandon the 
 ProjectCard class. 
+
+Program Flow:
+Initial page load > managers > create/update data > update Cards
+Button presses on cards > managers > data > update Cards
+
+Updated diagram: 
+
+
+    Project  <---\
+        |         \               
+    contains       +--->  Bunch of bundles idk <---> DOM
+        |         /
+    ToDoItem <---/
+
+So, what's going to be inside this bunch of bundles?
+- card factories: 
+    they don't make Card objects, they make divs as "cards" and return them. 
+    something else will populate the data into these cards.
