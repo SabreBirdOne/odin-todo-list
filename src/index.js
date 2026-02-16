@@ -7,6 +7,8 @@ import {updateToDoItemCard, updateProjectCard} from "./cardUpdaters.js"
 import Project from "./project.js";
 import loadHomePage from "./home.js"
 
+import "./cards.css";
+
 let toDoItem_1 = new ToDoItem();
 let toDoItem_2 = new ToDoItem("Eat more sushi", "Sushi is very expensive", undefined, 2);
 let toDoItem_3 = new ToDoItem("Goal in life", "Find the whereabouts of Abyssal Dision", undefined, 3);

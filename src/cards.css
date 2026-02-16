@@ -1,0 +1,15 @@
+div.projectCard, div.toDoItemCards, div.toDoItemCard {
+    padding: 1rem;
+}
+
+div.projectCard {
+    outline: 2px solid red;
+}
+
+div.toDoItemCards {
+    outline: 2px solid blue;
+}
+
+div.toDoItemCard {
+    outline: 2px solid green;
+}
