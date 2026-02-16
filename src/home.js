@@ -1,11 +1,14 @@
+import {newBlankProjectHandler} from "./buttonHandlers.js"
+
 export default function loadHomePage(){
 
     /* New Project button */
-    const newProjectButton = document.createElement("button");
-    newProjectButton.textContent = "New Project";
-    newProjectButton.id = "newProjectButton";
+    const newBlankProjectButton = document.createElement("button");
+    newBlankProjectButton.textContent = "New Blank Project";
+    newBlankProjectButton.id = "newBlankProjectButton";
     
     // Add event listeners here
+    newBlankProjectButton.addEventListener("click", newBlankProjectHandler);
 
 
     /* All Projects header */
@@ -19,7 +22,7 @@ export default function loadHomePage(){
     /* Add every element into body */
     const body = document.querySelector("body");
     for (const element of [
-        newProjectButton,
+        newBlankProjectButton,
         allProjectsHeader,
         allProjectsDiv,
     ]){
