@@ -83,12 +83,15 @@ Initial page load > managers > create/update data > update Cards
 Button presses on cards > managers > data > update Cards
 
 Updated diagram: 
-
-    Project  <---\
-        |         \               
-    contains       +--->  Bunch of bundles idk <---> DOM
-        |         /
-    ToDoItem <---/
+    allProjects.js <----|
+        |               |
+    contains            |
+        |               |
+    Project  <----------+-----> Bunch of bundles idk <---> DOM
+        |               |         
+    contains            | 
+        |               |
+    ToDoItem <----------+
 
 Data objects and DOM elements find each other with app-wide unique IDs.
 
