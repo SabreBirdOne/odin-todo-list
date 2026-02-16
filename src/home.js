@@ -1,4 +1,4 @@
-import {newBlankProjectHandler} from "./buttonHandlers.js"
+import {newBlankProjectHandler} from "./homeButtonHandlers.js"
 
 export default function loadHomePage(){
 
