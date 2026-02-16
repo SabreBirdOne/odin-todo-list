@@ -1,3 +1,5 @@
+import { newBlankToDoItemHandler } from "./projectButtonHandlers";
+
 const createProjectCard = function (itemID = crypto.randomUUID()){
     let div = document.createElement("div");
     div.dataset.itemID = itemID;
@@ -8,9 +10,7 @@ const createProjectCard = function (itemID = crypto.randomUUID()){
     // buttons
     let newBlankToDoItemButton = document.createElement("button");
     newBlankToDoItemButton.textContent = "New Blank To-do";
-    newBlankToDoItemButton.addEventListener("click", function(){
-        console.log("newBlankToDoItemButton clicked");
-    });
+    newBlankToDoItemButton.addEventListener("click", newBlankToDoItemHandler);
 
     // the div with all the toDoItems
     let toDoItemCards = document.createElement("div");

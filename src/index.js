@@ -1,6 +1,6 @@
 import {newDefaultProjectHandler} from "./homeButtonHandlers.js"
 import loadHomePage from "./home.js"
-import allProjects from "./allProjects.js";
+import {allProjects} from "./allProjects.js";
 
 import "./cards.css";
 

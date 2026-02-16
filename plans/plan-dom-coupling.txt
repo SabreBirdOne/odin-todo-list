@@ -83,7 +83,7 @@ Initial page load > managers > create/update data > update Cards
 Button presses on cards > managers > data > update Cards
 
 Updated diagram: 
-    allProjects.js <----|
+    allProjects.js <----+
         |               |
     contains            |
         |               |

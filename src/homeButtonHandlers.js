@@ -4,7 +4,7 @@ import Project from "./project.js";
 import {createProjectCard} from "./projectCardFactories.js";
 import {updateProjectCard} from "./projectCardUpdaters.js";
 
-import allProjects from "./allProjects.js";
+import {allProjects} from "./allProjects.js";
 import checkListManager from "./checkListManager.js";
 
 function newDefaultProjectHandler (){
