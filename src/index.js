@@ -5,6 +5,7 @@ import {createProjectCard} from "./cardFactories.js"
 import {updateToDoItemCard, updateProjectCard} from "./cardUpdaters.js"
 
 import Project from "./project.js";
+import loadHomePage from "./home.js"
 
 let toDoItem_1 = new ToDoItem();
 let toDoItem_2 = new ToDoItem("Eat more sushi", "Sushi is very expensive", undefined, 2);
@@ -26,4 +27,6 @@ console.log(projectNemo);
 const projectNemoCard = createProjectCard(projectNemo.id);
 updateProjectCard(projectNemo, projectNemoCard);
 
-document.querySelector("body").appendChild(projectNemoCard);
+// document.querySelector("body").appendChild(projectNemoCard);
+loadHomePage();
+document.querySelector("#allProjectsDiv").appendChild(projectNemoCard);
