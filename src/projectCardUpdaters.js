@@ -1,12 +1,5 @@
-import { format } from "date-fns";
-import { createToDoItemCard } from "./cardFactories.js";
-
-const updateToDoItemCard = function (toDoItem, toDoItemCard){
-    toDoItemCard.dataset.itemID = toDoItem.id;
-    toDoItemCard.querySelector(".title").textContent = `To Do Title: ${toDoItem["title"]}`;
-    toDoItemCard.querySelector(".dueDate").textContent = `Due Date: ${format(toDoItem["dueDate"], "yyyy-MM-dd H:m:s")}`;
-    toDoItemCard.querySelector(".priority").textContent = `Priority: ${toDoItem["priority"]}`;
-}
+import { createToDoItemCard } from "./toDoItemCardFactories.js";
+import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 
 const updateProjectCard = function(project, projectCard){
     projectCard.dataset.itemID = project.id;
@@ -27,5 +20,5 @@ const updateProjectCard = function(project, projectCard){
 }
 
 export {
-    updateToDoItemCard, updateProjectCard
+    updateProjectCard
 }

@@ -21,25 +21,6 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     return div;
 }
 
-const createProjectCard = function (itemID = crypto.randomUUID()){
-    let div = document.createElement("div");
-    div.dataset.itemID = itemID;
-
-    let name = document.createElement("h3");
-    let description = document.createElement("p");
-    let toDoItemCards = document.createElement("div");
-    
-    div.classList.add("projectCard");
-    name.classList.add("name");
-    description.classList.add("description");
-    toDoItemCards.classList.add("toDoItemCards");
-      
-    for (const element of [name, description, toDoItemCards]){
-        div.appendChild(element);
-    }
-    return div;
-}
-
 export {
-    createToDoItemCard, createProjectCard
+    createToDoItemCard
 }

@@ -1,26 +1,11 @@
 import ToDoItem from "./toDoItem.js";
 import Project from "./project.js";
 
-import {createProjectCard} from "./cardFactories.js";
-import {updateProjectCard} from "./cardUpdaters.js";
+import {createProjectCard} from "./projectCardFactories.js";
+import {updateProjectCard} from "./projectCardUpdaters.js";
 
 import allProjects from "./allProjects.js";
 import checkListManager from "./checkListManager.js";
-
-function newBlankProjectHandler (){
-    // Creates the new blank project data-side
-    const newBlankProject = new Project();
-
-    // Adds new blank project to allProjects
-    allProjects.push(newBlankProject);
-
-    // create new blank project card with the blank project and add to allProjectsDiv
-    const newBlankProjectCard = createProjectCard(newBlankProject.id);
-    updateProjectCard(newBlankProject, newBlankProjectCard);
-    document.querySelector("#allProjectsDiv").appendChild(newBlankProjectCard);
-
-    console.log(allProjects);
-}
 
 function newDefaultProjectHandler (){
     // Default ToDoItems with checklists.
@@ -48,7 +33,22 @@ function newDefaultProjectHandler (){
     updateProjectCard(projectNemo, projectNemoCard);
 }
 
+function newBlankProjectHandler (){
+    // Creates the new blank project data-side
+    const newBlankProject = new Project();
+
+    // Adds new blank project to allProjects
+    allProjects.push(newBlankProject);
+
+    // create new blank project card with the blank project and add to allProjectsDiv
+    const newBlankProjectCard = createProjectCard(newBlankProject.id);
+    updateProjectCard(newBlankProject, newBlankProjectCard);
+    document.querySelector("#allProjectsDiv").appendChild(newBlankProjectCard);
+
+    console.log(allProjects);
+}
+
 export {
+    newDefaultProjectHandler,
     newBlankProjectHandler,
-    newDefaultProjectHandler
 }
