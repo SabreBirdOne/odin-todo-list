@@ -23,21 +23,7 @@ function toggleChecklistItemHandler(event){
     isItemCompletedText.textContent = toDoItem.checklist[itemName] ? "Done" : "Not done";
 }
 
-function populateDetailsDiv(toDoItem, detailsDiv){
-    let descriptionHeader   = document.createElement("h5");
-    let description         = document.createElement("p");
-    let notesHeader         = document.createElement("h5");
-    let notes               = document.createElement("p");
-    let checklistHeader     = document.createElement("h5");
-    let checklist           = document.createElement("ul");
-
-    descriptionHeader.textContent   = "Description";
-    description.textContent         = toDoItem.description;
-    notesHeader.textContent         = "Notes";
-    notes.textContent               = toDoItem.notes;
-    checklistHeader.textContent     = "Checklist";
-
-    // Build checklist
+function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
         let checklistLine = document.createElement("li");
         
@@ -57,8 +43,26 @@ function populateDetailsDiv(toDoItem, detailsDiv){
         checklistLine.appendChild(checklistItemLabel);
         checklistLine.appendChild(isItemCompletedText);
         checklistLine.appendChild(toggleCompletedButton);
-        checklist.appendChild(checklistLine);
+        targetDiv.appendChild(checklistLine);
     }
+}
+
+function populateDetailsDiv(toDoItem, detailsDiv){
+    let descriptionHeader   = document.createElement("h5");
+    let description         = document.createElement("p");
+    let notesHeader         = document.createElement("h5");
+    let notes               = document.createElement("p");
+    let checklistHeader     = document.createElement("h5");
+    let checklist           = document.createElement("ul");
+
+    descriptionHeader.textContent   = "Description";
+    description.textContent         = toDoItem.description;
+    notesHeader.textContent         = "Notes";
+    notes.textContent               = toDoItem.notes;
+    checklistHeader.textContent     = "Checklist";
+
+    // Build checklist
+    populateChecklistElement(toDoItem, checklist)
 
     for (const element of [
         descriptionHeader,
