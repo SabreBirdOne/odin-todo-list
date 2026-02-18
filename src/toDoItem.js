@@ -6,6 +6,7 @@ export default class ToDoItem {
         priority = 99,
         notes = "None",
         checklist = {},
+        isComplete = false,
         toDoItemID = crypto.randomUUID(),
     )
         /* REQUIRES: checklist is an object with key value pair:
@@ -19,6 +20,7 @@ export default class ToDoItem {
         this.priority = priority;
         this.notes = notes;
         this.checklist = checklist;
+        this.isComplete = isComplete;
         this.id = toDoItemID;
     }
 }

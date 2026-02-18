@@ -12,6 +12,8 @@ function newBlankToDoItemHandler(event){
     let targetProject = getProjectByID(targetProjectID);
     targetProject.toDoItems.push(newToDoItem);
 
+    console.log(targetProject.toDoItems);
+
     // Create the new ToDoItemCard
     let newToDoItemCard = createToDoItemCard(newToDoItem.id);
     updateToDoItemCard(newToDoItem, newToDoItemCard);
@@ -19,8 +21,6 @@ function newBlankToDoItemHandler(event){
     // Add to the div.toDoItemCards
     let toDoItemCardsDiv = event.target.parentNode.querySelector(".toDoItemCards")
     toDoItemCardsDiv.appendChild(newToDoItemCard);
-
-    console.log(toDoItemCardsDiv);
 }
 
 export {
