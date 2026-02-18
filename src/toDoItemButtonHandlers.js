@@ -2,11 +2,6 @@ import { getToDoItemByID } from "./allProjects";
 import { updateToDoItemCard } from "./toDoItemCardUpdaters";
 
 function toggleCompleteStatusHandler(event){
-    // this function is picking up the incorrect event?!?
-    console.log(event.target.parentNode);
-    console.log(event.target.parentNode.dataset.itemID);
-    console.log(getToDoItemByID(event.target.parentNode.dataset.itemID));
-
     let toDoItemCard = event.target.parentNode;
     const toDoItemID = event.target.parentNode.dataset.itemID;
     let toDoItem = getToDoItemByID(toDoItemID);
@@ -16,7 +11,33 @@ function toggleCompleteStatusHandler(event){
 }   
 
 function populateDetailsDiv(toDoItem, detailsDiv){
-    console.log(toDoItem);
+    // description, notes, checklist
+    let descriptionHeader   = document.createElement("h5");
+    let description         = document.createElement("p");
+    let notesHeader         = document.createElement("h5");
+    let notes               = document.createElement("p");
+    let checklistHeader     = document.createElement("h5");
+    let checklist           = document.createElement("ol");
+
+    descriptionHeader.textContent   = "Description";
+    description.textContent         = toDoItem.description;
+    notesHeader.textContent         = "Notes";
+    notes.textContent               = toDoItem.notes;
+    checklistHeader.textContent     = "Checklist";
+
+    // Build checklist
+
+    for (const element of [
+        descriptionHeader,
+        description,
+        notesHeader,
+        notes,
+        checklistHeader,
+        checklist
+    ]){
+        detailsDiv.appendChild(element);
+    }
+
 }
 
 function viewDetailsHandler(event){
