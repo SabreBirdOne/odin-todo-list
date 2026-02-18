@@ -1,11 +1,15 @@
 import { getToDoItemByID } from "./allProjects";
+import { updateToDoItemCard } from "./toDoItemCardUpdaters";
 
 function toggleCompleteStatusHandler(event){
-    // Need to find toToItem data object and toggle its completion status too.
+    let toDoItemCard = event.target.parentNode;
+    const toDoItemID = toDoItemCard.dataset.itemID;
+    let toDoItem = getToDoItemByID(toDoItemID);
+    
+    toDoItem.isComplete = !toDoItem.isComplete;
+    console.log(toDoItem);
+    updateToDoItemCard(toDoItem, toDoItemCard);
 
-    let isCompleteElement = event.target.parentNode.querySelector("em.isComplete");
-    console.log(isCompleteElement);
-    isCompleteElement.textContent = toDoItem.isComplete ? "Completed" : "Not Completed";
-}
+}   
 
 export {toggleCompleteStatusHandler}
