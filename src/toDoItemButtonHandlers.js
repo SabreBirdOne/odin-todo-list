@@ -11,13 +11,12 @@ function toggleCompleteStatusHandler(event){
 }   
 
 function populateDetailsDiv(toDoItem, detailsDiv){
-    // description, notes, checklist
     let descriptionHeader   = document.createElement("h5");
     let description         = document.createElement("p");
     let notesHeader         = document.createElement("h5");
     let notes               = document.createElement("p");
     let checklistHeader     = document.createElement("h5");
-    let checklist           = document.createElement("ol");
+    let checklist           = document.createElement("ul");
 
     descriptionHeader.textContent   = "Description";
     description.textContent         = toDoItem.description;
@@ -26,6 +25,23 @@ function populateDetailsDiv(toDoItem, detailsDiv){
     checklistHeader.textContent     = "Checklist";
 
     // Build checklist
+    for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
+        let checklistLine = document.createElement("li");
+        
+        let checklistItemLabel = document.createElement("p");
+        checklistItemLabel.textContent = checklistItem;
+        
+        let isItemCompletedText = document.createElement("p");
+        isItemCompletedText.textContent = isItemCompleted ? "Done" : "Not done";
+
+        let toggleCompletedButton = document.createElement("button");
+        toggleCompletedButton.textContent = "Toggle";
+
+        checklistLine.appendChild(checklistItemLabel);
+        checklistLine.appendChild(isItemCompletedText);
+        checklistLine.appendChild(toggleCompletedButton);
+        checklist.appendChild(checklistLine);
+    }
 
     for (const element of [
         descriptionHeader,
@@ -43,7 +59,6 @@ function populateDetailsDiv(toDoItem, detailsDiv){
 function viewDetailsHandler(event){
     let viewDetailsButton = event.target;
     let toDoItemCard = event.target.parentNode;
-    console.log(toDoItemCard);
     let detailsDiv = toDoItemCard.querySelector(".details");
 
     if (viewDetailsButton.textContent === "View details"){
