@@ -8,12 +8,15 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let isComplete = document.createElement("em");
     let dueDate = document.createElement("p");
     let priority = document.createElement("p");
+    let details = document.createElement("div");
     
     div.classList.add("toDoItemCard");
+    
     title.classList.add("title");
     isComplete.classList.add("isComplete");
     dueDate.classList.add("dueDate");
     priority.classList.add("priority");
+    details.classList.add("details");
 
     title.textContent = "Untitled";
     isComplete.textContent = "Not completed";
@@ -30,7 +33,8 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
         isComplete, 
         dueDate, 
         priority, 
-        toggleCompleteButton
+        toggleCompleteButton,
+        details
     ]){
         div.appendChild(element);
     }
