@@ -28,12 +28,17 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     toggleCompleteButton.textContent = "Toggle Completion Status";
     toggleCompleteButton.addEventListener("click", toggleCompleteStatusHandler);
 
+    let viewDetailsButton = document.createElement("button");
+    viewDetailsButton.textContent = "View details";
+    viewDetailsButton.addEventListener("click", () => console.log("viewDetailsButton pressed"));
+
     for (const element of [
         title, 
         isComplete, 
         dueDate, 
         priority, 
         toggleCompleteButton,
+        viewDetailsButton,
         details
     ]){
         div.appendChild(element);
