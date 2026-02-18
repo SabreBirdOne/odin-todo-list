@@ -1,3 +1,5 @@
+import {toggleCompleteStatusHandler} from "./toDoItemButtonHandlers.js"
+
 const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let div = document.createElement("div");
     div.dataset.itemID = itemID;
@@ -18,7 +20,18 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     dueDate.textContent = Date.now();
     priority.textContent = 99;
 
-    for (const element of [title, isComplete, dueDate, priority]){
+    // Buttons:
+    let toggleCompleteButton = document.createElement("button");
+    toggleCompleteButton.textContent = "Toggle Completion Status";
+    toggleCompleteButton.addEventListener("click", toggleCompleteStatusHandler);
+
+    for (const element of [
+        title, 
+        isComplete, 
+        dueDate, 
+        priority, 
+        toggleCompleteButton
+    ]){
         div.appendChild(element);
     }
     return div;
