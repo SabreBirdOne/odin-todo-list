@@ -32,6 +32,8 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     viewDetailsButton.textContent = "View details";
     viewDetailsButton.addEventListener("click", viewDetailsHandler);
 
+    
+
     for (const element of [
         title, 
         isComplete, 

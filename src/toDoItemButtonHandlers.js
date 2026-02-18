@@ -47,6 +47,32 @@ function populateChecklistElement(toDoItem, targetDiv){
     }
 }
 
+function createToDoItemDialog(toDoItem = undefined){
+    let returnDiv = document.createElement("dialog");
+    returnDivForm = document.createElement("form");
+    
+    for (const stringField of [
+        "title",
+        "description",
+        "notes"
+    ]){
+        let label = document.createElement("label");
+        label.htmlFor = stringField;
+        label.textContent = stringField.toUpperCase() + ":";
+        
+        let input = document.createElement("input");
+        input.type = "text";
+        input.id = stringField;
+        if (toDoItem) input.placeholder = toDoItem[stringField];
+
+        returnDivForm.appendChild(label);
+        returnDivForm.appendChild(input);
+    }
+
+    returnDiv.appendChild(returnDivForm);
+    return returnDiv;
+}
+
 function populateDetailsDiv(toDoItem, detailsDiv){
     let descriptionHeader   = document.createElement("h5");
     let description         = document.createElement("p");
@@ -62,7 +88,7 @@ function populateDetailsDiv(toDoItem, detailsDiv){
     checklistHeader.textContent     = "Checklist";
 
     // Build checklist
-    populateChecklistElement(toDoItem, checklist)
+    populateChecklistElement(toDoItem, checklist);
 
     for (const element of [
         descriptionHeader,
