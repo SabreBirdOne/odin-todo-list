@@ -9,8 +9,8 @@ import checkListManager from "./checkListManager.js";
 
 function newDefaultProjectHandler (){
     // Default ToDoItems with checklists.
-    let toDoItem_1 = new ToDoItem();
-    let toDoItem_2 = new ToDoItem("Eat more sushi", "Sushi is very expensive", undefined, 2);
+    let toDoItem_2 = new ToDoItem();
+    let toDoItem_1 = new ToDoItem("Eat more sushi", "Sushi is very expensive", undefined, 2);
     let toDoItem_3 = new ToDoItem("Goal in life", "Find the whereabouts of Abyssal Dision", undefined, 3);
 
     checkListManager.addCheckListItem(toDoItem_3, "Join UPEO");
@@ -20,17 +20,16 @@ function newDefaultProjectHandler (){
     checkListManager.toggleCheckListItem(toDoItem_3, "Join UPEO");
     checkListManager.removeCheckListItem(toDoItem_3, "Have human empathy");
 
-    // Reuse this handler
-    newBlankProjectHandler();
-
-    // Update the blank project into the default one
-    let projectNemo = allProjects[allProjects.length - 1];
+    let projectNemo = new Project();
     projectNemo.name = "Nemo";
     projectNemo.description = "Default description";
     projectNemo.toDoItems = [toDoItem_1, toDoItem_2, toDoItem_3];
 
-    let projectNemoCard = document.querySelector("#allProjectsDiv").lastChild
+    allProjects.push(projectNemo);
+
+    let projectNemoCard = createProjectCard(projectNemo.id);
     updateProjectCard(projectNemo, projectNemoCard);
+    document.querySelector("#allProjectsDiv").appendChild(projectNemoCard);
 }
 
 function newBlankProjectHandler (){
@@ -44,8 +43,6 @@ function newBlankProjectHandler (){
     const newBlankProjectCard = createProjectCard(newBlankProject.id);
     updateProjectCard(newBlankProject, newBlankProjectCard);
     document.querySelector("#allProjectsDiv").appendChild(newBlankProjectCard);
-
-    console.log(allProjects);
 }
 
 export {

@@ -1,4 +1,4 @@
-import {toggleCompleteStatusHandler} from "./toDoItemButtonHandlers.js"
+import {toggleCompleteStatusHandler, viewDetailsHandler} from "./toDoItemButtonHandlers.js"
 
 const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let div = document.createElement("div");
@@ -30,7 +30,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
 
     let viewDetailsButton = document.createElement("button");
     viewDetailsButton.textContent = "View details";
-    viewDetailsButton.addEventListener("click", () => console.log("viewDetailsButton pressed"));
+    viewDetailsButton.addEventListener("click", viewDetailsHandler);
 
     for (const element of [
         title, 
