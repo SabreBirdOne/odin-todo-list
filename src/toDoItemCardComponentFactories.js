@@ -68,7 +68,7 @@ function populateDetailsDiv(toDoItem, detailsDiv){
 
 function createToDoItemDialog(toDoItem = undefined){
     let returnDiv = document.createElement("dialog");
-    returnDivForm = document.createElement("form");
+    let returnDivForm = document.createElement("form");
     
     for (const stringField of [
         "title",
@@ -93,5 +93,5 @@ function createToDoItemDialog(toDoItem = undefined){
 }
 
 export {
-    populateDetailsDiv
+    populateDetailsDiv, createToDoItemDialog
 }
