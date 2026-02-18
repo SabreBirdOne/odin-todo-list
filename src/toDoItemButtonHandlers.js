@@ -1,5 +1,6 @@
 import { getToDoItemByID } from "./allProjects";
 import { updateToDoItemCard } from "./toDoItemCardUpdaters";
+import checkListManager from "./checkListManager";
 
 function toggleCompleteStatusHandler(event){
     let toDoItemCard = event.target.parentNode;
@@ -9,6 +10,18 @@ function toggleCompleteStatusHandler(event){
     toDoItem.isComplete = !toDoItem.isComplete;
     updateToDoItemCard(toDoItem, toDoItemCard);
 }   
+
+function toggleChecklistItemHandler(event){
+    let checklistLine = event.target.parentNode;
+    let toDoItemCard = checklistLine.parentNode.parentNode.parentNode;
+    let toDoItem = getToDoItemByID(toDoItemCard.dataset.itemID);
+
+    let itemName = checklistLine.querySelector("p.checklistItemLabel").textContent;
+    let isItemCompletedText = checklistLine.querySelector("p.isItemCompletedText");
+
+    checkListManager.toggleCheckListItem(toDoItem, itemName);
+    isItemCompletedText.textContent = toDoItem.checklist[itemName] ? "Done" : "Not done";
+}
 
 function populateDetailsDiv(toDoItem, detailsDiv){
     let descriptionHeader   = document.createElement("h5");
@@ -29,13 +42,17 @@ function populateDetailsDiv(toDoItem, detailsDiv){
         let checklistLine = document.createElement("li");
         
         let checklistItemLabel = document.createElement("p");
-        checklistItemLabel.textContent = checklistItem;
-        
         let isItemCompletedText = document.createElement("p");
+        
+        checklistItemLabel.classList.add("checklistItemLabel");
+        isItemCompletedText.classList.add("isItemCompletedText");
+        
+        checklistItemLabel.textContent = checklistItem;
         isItemCompletedText.textContent = isItemCompleted ? "Done" : "Not done";
 
         let toggleCompletedButton = document.createElement("button");
         toggleCompletedButton.textContent = "Toggle";
+        toggleCompletedButton.addEventListener("click", toggleChecklistItemHandler);
 
         checklistLine.appendChild(checklistItemLabel);
         checklistLine.appendChild(isItemCompletedText);
