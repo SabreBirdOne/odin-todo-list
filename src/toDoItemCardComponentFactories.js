@@ -128,7 +128,7 @@ function createToDoItemEditDialog(toDoItem){
             console.log(elementsToUpdate);
 
             for(const key of Object.keys(elementsToUpdate)){
-                if(elementsToUpdate[key]){
+                if(elementsToUpdate[key] && Object.hasOwn(toDoItem, key)){
                     toDoItem[key] = elementsToUpdate[key];
                 }
             }
