@@ -66,9 +66,11 @@ function populateDetailsDiv(toDoItem, detailsDiv){
     }
 }
 
-function createToDoItemDialog(toDoItem = undefined){
-    let returnDiv = document.createElement("dialog");
-    let returnDivForm = document.createElement("form");
+function createToDoItemEditDialog(toDoItem){
+    let returnDialog = document.createElement("dialog");
+    let returnDialogForm = document.createElement("form");
+
+    returnDialog.classList.add("toDoItemDialog");
     
     for (const stringField of [
         "title",
@@ -82,16 +84,50 @@ function createToDoItemDialog(toDoItem = undefined){
         let input = document.createElement("input");
         input.type = "text";
         input.id = stringField;
-        if (toDoItem) input.placeholder = toDoItem[stringField];
+        input.placeholder = toDoItem[stringField];
 
-        returnDivForm.appendChild(label);
-        returnDivForm.appendChild(input);
+        returnDialogForm.appendChild(label);
+        returnDialogForm.appendChild(input);
     }
 
-    returnDiv.appendChild(returnDivForm);
-    return returnDiv;
+    // The div for submit or cancel buttons
+    let buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("buttonsDiv");
+
+    let cancelButton = document.createElement("button");
+    cancelButton.classList.add("cancelButton");
+    cancelButton.formMethod = "dialog";
+    cancelButton.textContent = "Cancel";
+    cancelButton.value = "cancel";
+
+    let saveButton = document.createElement("button");
+    saveButton.classList.add("saveButton");
+    saveButton.id = "saveButton";
+    saveButton.textContent = "Save Changes";
+    saveButton.value = "save";
+
+    saveButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        returnDialog.close("save");
+    });
+
+    returnDialog.addEventListener("close", (event) => {
+        if (returnDialog.returnValue === "save"){
+            // Assign form values to the toDoItem and actually edit it here
+            console.log(toDoItem);
+
+            // update the toDoItemCard too after editting toDoItem
+        }
+    });
+
+    buttonsDiv.appendChild(cancelButton);
+    buttonsDiv.appendChild(saveButton);
+    returnDialogForm.appendChild(buttonsDiv);
+    returnDialog.appendChild(returnDialogForm);
+
+    return returnDialog;
 }
 
 export {
-    populateDetailsDiv, createToDoItemDialog
+    populateDetailsDiv, createToDoItemEditDialog
 }

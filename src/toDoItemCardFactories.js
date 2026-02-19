@@ -1,6 +1,6 @@
 import { getToDoItemByID } from "./allProjects";
 import { toggleCompleteStatusHandler, viewDetailsHandler } from "./toDoItemButtonHandlers.js"
-import { createToDoItemDialog } from "./toDoItemCardComponentFactories.js"
+import { createToDoItemEditDialog } from "./toDoItemCardComponentFactories.js"
 
 const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let div = document.createElement("div");
@@ -11,7 +11,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let dueDate = document.createElement("p");
     let priority = document.createElement("p");
     let details = document.createElement("div");
-    let editDialog = createToDoItemDialog(getToDoItemByID(itemID));
+    let editDialog = createToDoItemEditDialog(getToDoItemByID(itemID));
     
     div.classList.add("toDoItemCard");
     
