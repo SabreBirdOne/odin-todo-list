@@ -1,5 +1,6 @@
 import { getToDoItemByID } from "./allProjects";
 import checkListManager from "./checkListManager";
+import { updateToDoItemCard } from "./toDoItemCardUpdaters";
 
 function toggleChecklistItemHandler(event){
     let checklistLine = event.target.parentNode;
@@ -116,9 +117,28 @@ function createToDoItemEditDialog(toDoItem){
     returnDialog.addEventListener("close", (event) => {
         if (returnDialog.returnValue === "save"){
             // Assign form values to the toDoItem and actually edit it here
-            console.log(toDoItem);
+            const toDoItemArgs = returnDialog.querySelectorAll("input");
+            const elementsToUpdate = {
+                "title": toDoItemArgs[0].value,
+                "description": toDoItemArgs[1].value,
+                "dueDate": toDoItemArgs[2].valueAsDate,
+                "priority": toDoItemArgs[3].valueAsNumber,
+                "notes": toDoItemArgs[4].value
+            }
+            console.log(elementsToUpdate);
+
+            for(const key of Object.keys(elementsToUpdate)){
+                if(elementsToUpdate[key]){
+                    toDoItem[key] = elementsToUpdate[key];
+                }
+            }
 
             // update the toDoItemCard too after editting toDoItem
+            let toDoItemCard = document.querySelector(
+                `div.toDoItemCard[data-item-i-d = "${toDoItem.id}"]`
+            );
+            console.log(toDoItemCard);
+            updateToDoItemCard(toDoItem, toDoItemCard);
         }
     });
 
