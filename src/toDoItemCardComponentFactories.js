@@ -72,17 +72,19 @@ function createToDoItemEditDialog(toDoItem){
 
     returnDialog.classList.add("toDoItemDialog");
     
-    for (const stringField of [
-        "title",
-        "description",
-        "notes"
-    ]){
+    for (const [stringField, details] of Object.entries({
+        "title": ["Title:", "text"],
+        "description": ["Description:", "text"],
+        "dueDate": ["Due Date:", "datetime-local"],
+        "priority": ["Priority:", "number"],
+        "notes": ["Notes:", "text"],
+    })){
         let label = document.createElement("label");
         label.htmlFor = stringField;
-        label.textContent = stringField.toUpperCase() + ":";
+        label.textContent = details[0];
         
         let input = document.createElement("input");
-        input.type = "text";
+        input.type = details[1];
         input.id = stringField;
         input.placeholder = toDoItem[stringField];
 
