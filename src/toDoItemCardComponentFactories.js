@@ -121,7 +121,7 @@ function createToDoItemEditDialog(toDoItem){
             const elementsToUpdate = {
                 "title": toDoItemArgs[0].value,
                 "description": toDoItemArgs[1].value,
-                "dueDate": toDoItemArgs[2].valueAsDate,
+                "dueDate": toDoItemArgs[2].value,
                 "priority": toDoItemArgs[3].valueAsNumber,
                 "notes": toDoItemArgs[4].value
             }
