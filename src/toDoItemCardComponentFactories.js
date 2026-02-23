@@ -117,7 +117,7 @@ function createToDoItemEditDialog(toDoItem){
         let input = document.createElement("input");
         input.type = details[1];
         input.id = stringField;
-        input.placeholder = toDoItem[stringField];
+        input.value = toDoItem[stringField];
 
         returnDialogForm.appendChild(label);
         returnDialogForm.appendChild(input);
