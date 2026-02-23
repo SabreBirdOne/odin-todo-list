@@ -14,7 +14,11 @@ function toggleChecklistItemHandler(event){
     isItemCompletedText.textContent = toDoItem.checklist[itemName] ? "Done" : "Not done";
 }
 
-function createCheckListLine(checklistItem, isItemCompleted){
+function createCheckListEditDialog(){
+
+}
+
+function createCheckListLine(checklistItem, isItemCompleted, toDoItem){
     let checklistLine = document.createElement("li");
         
     let checklistItemLabel = document.createElement("p");
@@ -60,14 +64,15 @@ function addToCheckListHandler (event){
     let checklistElement = toDoItemCard.querySelector("ul");
     const checklistLine = createCheckListLine(
         newChecklistItemName, 
-        toDoItem.checklist[newChecklistItemName]
+        toDoItem.checklist[newChecklistItemName],
+        toDoItem
     );
     checklistElement.appendChild(checklistLine);
 }
 
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
-        const checklistLine = createCheckListLine(checklistItem, isItemCompleted);
+        const checklistLine = createCheckListLine(checklistItem, isItemCompleted, toDoItem);
         targetDiv.appendChild(checklistLine);
     }
 }
