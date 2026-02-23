@@ -57,6 +57,28 @@ function createCheckListLine(checklistItem, isItemCompleted){
     return checklistLine;
 }
 
+function createAddToChecklistDialog(toDoItem){
+    dialog = document.createElement("dialog");
+    dialogForm = document.createElement("form");
+
+    let label = document.createElement("label");
+    label.htmlFor = "newChecklistItemName";
+    label.textContent = "New checklist item name"
+
+    let input = document.createElement("input");
+    input.type = "text"; 
+    input.id = "newChecklistItemName";
+    input.placeholder = "Checklist Item " + (Object.keys(toDoItem.checklist).length + 1);
+
+    dialogForm.appendChild(label);
+    dialogForm.appendChild(input);
+
+    
+
+    dialog.appendChild(dialogForm);
+    return dialog;
+}
+
 function addToCheckListHandler (event){
     let toDoItemCard = event.target.parentNode.parentNode;
     let toDoItem = getToDoItemByID(toDoItemCard.dataset.itemID);
