@@ -68,6 +68,9 @@ function populateDetailsDiv(toDoItem, detailsDiv){
     let checklistHeader     = document.createElement("h5");
     let checklist           = document.createElement("ul");
 
+    description.classList.add("description");
+    notes.classList.add("notes");
+
     descriptionHeader.textContent   = "Description";
     description.textContent         = toDoItem.description;
     notesHeader.textContent         = "Notes";
