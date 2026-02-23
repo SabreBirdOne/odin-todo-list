@@ -14,26 +14,31 @@ function toggleChecklistItemHandler(event){
     isItemCompletedText.textContent = toDoItem.checklist[itemName] ? "Done" : "Not done";
 }
 
+function createCheckListLine(checklistItem, isItemCompleted){
+    let checklistLine = document.createElement("li");
+        
+    let checklistItemLabel = document.createElement("p");
+    let isItemCompletedText = document.createElement("p");
+    
+    checklistItemLabel.classList.add("checklistItemLabel");
+    isItemCompletedText.classList.add("isItemCompletedText");
+    
+    checklistItemLabel.textContent = checklistItem;
+    isItemCompletedText.textContent = isItemCompleted ? "Done" : "Not done";
+
+    let toggleCompletedButton = document.createElement("button");
+    toggleCompletedButton.textContent = "Toggle";
+    toggleCompletedButton.addEventListener("click", toggleChecklistItemHandler);
+
+    checklistLine.appendChild(checklistItemLabel);
+    checklistLine.appendChild(isItemCompletedText);
+    checklistLine.appendChild(toggleCompletedButton);
+    return checklistLine;
+}
+
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
-        let checklistLine = document.createElement("li");
-        
-        let checklistItemLabel = document.createElement("p");
-        let isItemCompletedText = document.createElement("p");
-        
-        checklistItemLabel.classList.add("checklistItemLabel");
-        isItemCompletedText.classList.add("isItemCompletedText");
-        
-        checklistItemLabel.textContent = checklistItem;
-        isItemCompletedText.textContent = isItemCompleted ? "Done" : "Not done";
-
-        let toggleCompletedButton = document.createElement("button");
-        toggleCompletedButton.textContent = "Toggle";
-        toggleCompletedButton.addEventListener("click", toggleChecklistItemHandler);
-
-        checklistLine.appendChild(checklistItemLabel);
-        checklistLine.appendChild(isItemCompletedText);
-        checklistLine.appendChild(toggleCompletedButton);
+        const checklistLine = createCheckListLine(checklistItem, isItemCompleted);
         targetDiv.appendChild(checklistLine);
     }
 }
@@ -52,6 +57,12 @@ function populateDetailsDiv(toDoItem, detailsDiv){
     notes.textContent               = toDoItem.notes;
     checklistHeader.textContent     = "Checklist";
 
+    let addToChecklistButton = document.createElement("button");
+    addToChecklistButton.textContent = "Add";
+    addToChecklistButton.addEventListener("click", () => {
+        console.log("button pressed");
+    });
+
     // Build checklist
     populateChecklistElement(toDoItem, checklist);
 
@@ -61,6 +72,7 @@ function populateDetailsDiv(toDoItem, detailsDiv){
         notesHeader,
         notes,
         checklistHeader,
+        addToChecklistButton,
         checklist
     ]){
         detailsDiv.appendChild(element);
