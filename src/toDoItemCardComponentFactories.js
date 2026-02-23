@@ -57,6 +57,34 @@ function createCheckListLine(checklistItem, isItemCompleted){
     return checklistLine;
 }
 
+function createDialogButtonDiv(
+    submitValue = "submit", 
+    cancelValue = "cancel",
+    submitButtonText = "Submit",
+    cancelButtonText = "Cancel"
+){
+    // Buttons with no event handlers attached
+    let buttonsDiv = document.createElement("div");
+    buttonsDiv.classList.add("buttonsDiv");
+
+    let cancelButton = document.createElement("button");
+    cancelButton.classList.add("cancelButton");
+    cancelButton.formMethod = "dialog";
+    cancelButton.textContent = cancelButtonText;
+    cancelButton.value = cancelValue;
+
+    let submitButton = document.createElement("button");
+    submitButton.classList.add("submitButton");
+    submitButton.id = "submitButton";
+    submitButton.textContent = submitButtonText;
+    submitButton.value = submitValue;
+
+    buttonsDiv.appendChild(cancelButton);
+    buttonsDiv.appendChild(submitButton);
+
+    return buttonsDiv;
+}
+
 function createAddToChecklistDialog(toDoItem){
     dialog = document.createElement("dialog");
     dialogForm = document.createElement("form");
@@ -73,7 +101,7 @@ function createAddToChecklistDialog(toDoItem){
     dialogForm.appendChild(label);
     dialogForm.appendChild(input);
 
-    
+
 
     dialog.appendChild(dialogForm);
     return dialog;
@@ -167,28 +195,18 @@ function createToDoItemEditDialog(toDoItem){
     }
 
     // The div for submit or cancel buttons
-    let buttonsDiv = document.createElement("div");
-    buttonsDiv.classList.add("buttonsDiv");
-
-    let cancelButton = document.createElement("button");
-    cancelButton.classList.add("cancelButton");
-    cancelButton.formMethod = "dialog";
-    cancelButton.textContent = "Cancel";
-    cancelButton.value = "cancel";
-
-    let saveButton = document.createElement("button");
-    saveButton.classList.add("saveButton");
-    saveButton.id = "saveButton";
-    saveButton.textContent = "Save Changes";
-    saveButton.value = "save";
-
+    let submitValue = "save";
+    let buttonsDiv = createDialogButtonDiv(submitValue);
+    console.log(buttonsDiv);
+    let saveButton = buttonsDiv.querySelector(".submitButton");
+    
     saveButton.addEventListener("click", (event) => {
         event.preventDefault();
-        returnDialog.close("save");
+        returnDialog.close(submitValue);
     });
 
     returnDialog.addEventListener("close", (event) => {
-        if (returnDialog.returnValue === "save"){
+        if (returnDialog.returnValue === submitValue){
             // Assign form values to the toDoItem and actually edit it here
             const toDoItemArgs = returnDialog.querySelectorAll("input");
             const elementsToUpdate = {
@@ -213,8 +231,6 @@ function createToDoItemEditDialog(toDoItem){
         }
     });
 
-    buttonsDiv.appendChild(cancelButton);
-    buttonsDiv.appendChild(saveButton);
     returnDialogForm.appendChild(buttonsDiv);
     returnDialog.appendChild(returnDialogForm);
 
