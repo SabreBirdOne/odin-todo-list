@@ -36,6 +36,23 @@ function createCheckListLine(checklistItem, isItemCompleted){
     return checklistLine;
 }
 
+function addToCheckListHandler (event){
+    let toDoItemCard = event.target.parentNode.parentNode;
+    let toDoItem = getToDoItemByID(toDoItemCard.dataset.itemID);
+
+    const newChecklistItemName = "Checklist Item " + (Object.keys(toDoItem.checklist).length + 1);
+    
+    checkListManager.addCheckListItem(toDoItem, newChecklistItemName);
+    console.log(toDoItem.checklist);
+
+    let checklistElement = toDoItemCard.querySelector("ul");
+    const checklistLine = createCheckListLine(
+        newChecklistItemName, 
+        toDoItem.checklist[newChecklistItemName]
+    );
+    checklistElement.appendChild(checklistLine);
+}
+
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
         const checklistLine = createCheckListLine(checklistItem, isItemCompleted);
@@ -59,9 +76,7 @@ function populateDetailsDiv(toDoItem, detailsDiv){
 
     let addToChecklistButton = document.createElement("button");
     addToChecklistButton.textContent = "Add";
-    addToChecklistButton.addEventListener("click", () => {
-        console.log("button pressed");
-    });
+    addToChecklistButton.addEventListener("click", addToCheckListHandler);
 
     // Build checklist
     populateChecklistElement(toDoItem, checklist);
@@ -137,7 +152,6 @@ function createToDoItemEditDialog(toDoItem){
                 "priority": toDoItemArgs[3].valueAsNumber,
                 "notes": toDoItemArgs[4].value
             }
-            console.log(elementsToUpdate);
 
             for(const key of Object.keys(elementsToUpdate)){
                 if(elementsToUpdate[key] && Object.hasOwn(toDoItem, key)){
@@ -149,7 +163,6 @@ function createToDoItemEditDialog(toDoItem){
             let toDoItemCard = document.querySelector(
                 `div.toDoItemCard[data-item-i-d = "${toDoItem.id}"]`
             );
-            console.log(toDoItemCard);
             updateToDoItemCard(toDoItem, toDoItemCard);
         }
     });
