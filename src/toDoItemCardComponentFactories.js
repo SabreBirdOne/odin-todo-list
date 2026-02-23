@@ -14,11 +14,8 @@ function toggleChecklistItemHandler(event){
     isItemCompletedText.textContent = toDoItem.checklist[itemName] ? "Done" : "Not done";
 }
 
-function createCheckListEditDialog(){
 
-}
-
-function createCheckListLine(checklistItem, isItemCompleted, toDoItem){
+function createCheckListLine(checklistItem, isItemCompleted){
     let checklistLine = document.createElement("li");
         
     let checklistItemLabel = document.createElement("p");
@@ -35,17 +32,10 @@ function createCheckListLine(checklistItem, isItemCompleted, toDoItem){
     toggleCompletedButton.textContent = "Toggle Completion Status";
     toggleCompletedButton.addEventListener("click", toggleChecklistItemHandler);
 
-    let editItemButton = document.createElement("button");
-    editItemButton.textContent = "Edit name";
-    editItemButton.addEventListener("click", () => {
-        // Show the edit-checklist-item dialog
-    });
-
     for (const element of [
         checklistItemLabel,
         isItemCompletedText,
-        toggleCompletedButton,
-        editItemButton
+        toggleCompletedButton
     ]){
         checklistLine.appendChild(element)
     }
@@ -64,15 +54,14 @@ function addToCheckListHandler (event){
     let checklistElement = toDoItemCard.querySelector("ul");
     const checklistLine = createCheckListLine(
         newChecklistItemName, 
-        toDoItem.checklist[newChecklistItemName],
-        toDoItem
+        toDoItem.checklist[newChecklistItemName]
     );
     checklistElement.appendChild(checklistLine);
 }
 
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
-        const checklistLine = createCheckListLine(checklistItem, isItemCompleted, toDoItem);
+        const checklistLine = createCheckListLine(checklistItem, isItemCompleted);
         targetDiv.appendChild(checklistLine);
     }
 }
