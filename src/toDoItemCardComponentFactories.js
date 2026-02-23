@@ -86,8 +86,8 @@ function createDialogButtonDiv(
 }
 
 function createAddToChecklistDialog(toDoItem){
-    dialog = document.createElement("dialog");
-    dialogForm = document.createElement("form");
+    let dialog = document.createElement("dialog");
+    let dialogForm = document.createElement("form");
 
     let label = document.createElement("label");
     label.htmlFor = "newChecklistItemName";
@@ -96,32 +96,44 @@ function createAddToChecklistDialog(toDoItem){
     let input = document.createElement("input");
     input.type = "text"; 
     input.id = "newChecklistItemName";
-    input.placeholder = "Checklist Item " + (Object.keys(toDoItem.checklist).length + 1);
+    input.placeholder = "Checklist Item";
 
     dialogForm.appendChild(label);
     dialogForm.appendChild(input);
 
+    let submitValue = "add";
+    let buttonsDiv = createDialogButtonDiv(submitValue, undefined, "Add");
+    let addButton = buttonsDiv.querySelector(".submitButton");
 
+    addButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        dialog.close(submitValue);
+    });
+
+    dialog.addEventListener("close", (event) => {
+        if (dialog.returnValue === submitValue){
+            const inputValue = dialog.querySelector("input").value; 
+            const newName = inputValue ? 
+                inputValue : 
+                "Checklist Item " + (Object.keys(toDoItem.checklist).length + 1)
+            checkListManager.addCheckListItem(toDoItem, newName);
+
+            let toDoItemCard = document.querySelector(
+                `div.toDoItemCard[data-item-i-d = "${toDoItem.id}"]`
+            );
+
+            let checklistElement = toDoItemCard.querySelector("ul");
+            const checklistLine = createCheckListLine(newName, toDoItem.checklist[newName]);
+            checklistElement.appendChild(checklistLine);  
+        }
+    });
+
+    for (const element of [label, input, buttonsDiv]){
+        dialogForm.appendChild(element);
+    }
 
     dialog.appendChild(dialogForm);
     return dialog;
-}
-
-function addToCheckListHandler (event){
-    let toDoItemCard = event.target.parentNode.parentNode;
-    let toDoItem = getToDoItemByID(toDoItemCard.dataset.itemID);
-
-    const newChecklistItemName = "Checklist Item " + (Object.keys(toDoItem.checklist).length + 1);
-    
-    checkListManager.addCheckListItem(toDoItem, newChecklistItemName);
-    console.log(toDoItem.checklist);
-
-    let checklistElement = toDoItemCard.querySelector("ul");
-    const checklistLine = createCheckListLine(
-        newChecklistItemName, 
-        toDoItem.checklist[newChecklistItemName]
-    );
-    checklistElement.appendChild(checklistLine);
 }
 
 function populateChecklistElement(toDoItem, targetDiv){
@@ -132,12 +144,13 @@ function populateChecklistElement(toDoItem, targetDiv){
 }
 
 function populateDetailsDiv(toDoItem, detailsDiv){
-    let descriptionHeader   = document.createElement("h5");
-    let description         = document.createElement("p");
-    let notesHeader         = document.createElement("h5");
-    let notes               = document.createElement("p");
-    let checklistHeader     = document.createElement("h5");
-    let checklist           = document.createElement("ul");
+    let descriptionHeader       = document.createElement("h5");
+    let description             = document.createElement("p");
+    let notesHeader             = document.createElement("h5");
+    let notes                   = document.createElement("p");
+    let checklistHeader         = document.createElement("h5");
+    let addToChecklistDialog    = createAddToChecklistDialog(toDoItem);
+    let checklist               = document.createElement("ul");
 
     description.classList.add("description");
     notes.classList.add("notes");
@@ -148,9 +161,11 @@ function populateDetailsDiv(toDoItem, detailsDiv){
     notes.textContent               = toDoItem.notes;
     checklistHeader.textContent     = "Checklist";
 
-    let addToChecklistButton = document.createElement("button");
-    addToChecklistButton.textContent = "Add";
-    addToChecklistButton.addEventListener("click", addToCheckListHandler);
+    let openAddToChecklistDialogButton = document.createElement("button");
+    openAddToChecklistDialogButton.textContent = "Add";
+    openAddToChecklistDialogButton.addEventListener("click", () => {
+        addToChecklistDialog.showModal();
+    });
 
     // Build checklist
     populateChecklistElement(toDoItem, checklist);
@@ -161,7 +176,8 @@ function populateDetailsDiv(toDoItem, detailsDiv){
         notesHeader,
         notes,
         checklistHeader,
-        addToChecklistButton,
+        openAddToChecklistDialogButton,
+        addToChecklistDialog,
         checklist
     ]){
         detailsDiv.appendChild(element);
@@ -197,7 +213,6 @@ function createToDoItemEditDialog(toDoItem){
     // The div for submit or cancel buttons
     let submitValue = "save";
     let buttonsDiv = createDialogButtonDiv(submitValue);
-    console.log(buttonsDiv);
     let saveButton = buttonsDiv.querySelector(".submitButton");
     
     saveButton.addEventListener("click", (event) => {
