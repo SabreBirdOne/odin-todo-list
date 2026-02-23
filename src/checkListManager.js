@@ -24,7 +24,20 @@ const checkListManager = (function(){
         }
     };
 
-    return {addCheckListItem, toggleCheckListItem, removeCheckListItem};
+    const renameCheckListItem = function (toDoItem, oldItemName, newItemName){
+        if (_hasCheckListItem(toDoItem, oldItemName) 
+            && !_hasCheckListItem(toDoItem, newItemName)){
+            toDoItem.checklist[newItemName] = toDoItem.checklist[oldItemName];
+            delete toDoItem.checklist[oldItemName];
+        }
+    }
+
+    return {
+        addCheckListItem, 
+        toggleCheckListItem, 
+        removeCheckListItem,
+        renameCheckListItem
+    };
 })();
 
 export default checkListManager;
