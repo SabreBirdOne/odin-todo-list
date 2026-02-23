@@ -14,6 +14,16 @@ function toggleChecklistItemHandler(event){
     isItemCompletedText.textContent = toDoItem.checklist[itemName] ? "Done" : "Not done";
 }
 
+function removeChecklistItemHandler(event){
+    let checklistLine = event.target.parentNode;
+    let toDoItemCard = checklistLine.parentNode.parentNode.parentNode;
+    let toDoItem = getToDoItemByID(toDoItemCard.dataset.itemID);
+
+    const itemToRemove = checklistLine.querySelector("p.checklistItemLabel").textContent;
+    checkListManager.removeCheckListItem(toDoItem, itemToRemove);
+    // And remove the item from the DOM
+    checklistLine.parentNode.removeChild(checklistLine);
+}
 
 function createCheckListLine(checklistItem, isItemCompleted){
     let checklistLine = document.createElement("li");
@@ -32,10 +42,15 @@ function createCheckListLine(checklistItem, isItemCompleted){
     toggleCompletedButton.textContent = "Toggle Completion Status";
     toggleCompletedButton.addEventListener("click", toggleChecklistItemHandler);
 
+    let removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    removeButton.addEventListener("click", removeChecklistItemHandler);
+
     for (const element of [
         checklistItemLabel,
         isItemCompletedText,
-        toggleCompletedButton
+        toggleCompletedButton,
+        removeButton
     ]){
         checklistLine.appendChild(element)
     }
