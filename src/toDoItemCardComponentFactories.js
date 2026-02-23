@@ -26,13 +26,25 @@ function createCheckListLine(checklistItem, isItemCompleted){
     checklistItemLabel.textContent = checklistItem;
     isItemCompletedText.textContent = isItemCompleted ? "Done" : "Not done";
 
+    // buttons
     let toggleCompletedButton = document.createElement("button");
-    toggleCompletedButton.textContent = "Toggle";
+    toggleCompletedButton.textContent = "Toggle Completion Status";
     toggleCompletedButton.addEventListener("click", toggleChecklistItemHandler);
 
-    checklistLine.appendChild(checklistItemLabel);
-    checklistLine.appendChild(isItemCompletedText);
-    checklistLine.appendChild(toggleCompletedButton);
+    let editItemButton = document.createElement("button");
+    editItemButton.textContent = "Edit name";
+    editItemButton.addEventListener("click", () => {
+        // Show the edit-checklist-item dialog
+    });
+
+    for (const element of [
+        checklistItemLabel,
+        isItemCompletedText,
+        toggleCompletedButton,
+        editItemButton
+    ]){
+        checklistLine.appendChild(element)
+    }
     return checklistLine;
 }
 
