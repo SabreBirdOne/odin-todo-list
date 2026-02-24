@@ -4,7 +4,6 @@ const projectManager = (function (){
         if (indexToRemove > -1){
             project.toDoItems.splice(indexToRemove, 1);
         }
-        console.log(project.toDoItems);
     }
 
     return {

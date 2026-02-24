@@ -1,5 +1,7 @@
-import { getToDoItemByID } from "./allProjects";
+import { getToDoItemByID, getProjectByToDoItemID } from "./allProjects";
+import projectManager from "./projectManager.js";
 import { updateToDoItemCard } from "./toDoItemCardUpdaters";
+import { updateProjectCard } from "./projectCardUpdaters.js";
 import { populateDetailsDiv } from "./toDoItemCardComponentFactories";
 
 function toggleCompleteStatusHandler(event){
@@ -32,7 +34,14 @@ function viewDetailsHandler(event){
 }
 
 function removeToDoItemHandler(event){
-    console.log(event.target.parentNode);
+    let toDoItemCardToRemove = event.target.parentNode;
+    let toDoItemToRemove = getToDoItemByID(toDoItemCardToRemove.dataset.itemID);
+    
+    let targetProject = getProjectByToDoItemID(toDoItemCardToRemove.dataset.itemID)
+    projectManager.removeToDoFromProject(targetProject, toDoItemToRemove);
+
+    let targetProjectCard = toDoItemCardToRemove.parentNode.parentNode
+    updateProjectCard(targetProject, targetProjectCard);
 }
 
 export {
