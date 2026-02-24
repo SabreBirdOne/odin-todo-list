@@ -15,8 +15,19 @@ function getToDoItemByID(searchID){
     return undefined;
 }
 
+function getProjectByToDoItemID(searchID){
+    for (const project of allProjects){
+        let toDoItemSearchResult = project.toDoItems.find(
+            (element) => element.id === searchID.toString()
+        );
+        if (toDoItemSearchResult) return project;
+    }
+    return undefined;
+}
+
 export {
     allProjects,
     getProjectByID,
     getToDoItemByID,
+    getProjectByToDoItemID
 }
