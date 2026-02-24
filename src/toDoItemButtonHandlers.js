@@ -31,9 +31,12 @@ function viewDetailsHandler(event){
     }
 }
 
-
+function removeToDoItemHandler(event){
+    console.log(event.target.parentNode);
+}
 
 export {
     toggleCompleteStatusHandler,
-    viewDetailsHandler
+    viewDetailsHandler,
+    removeToDoItemHandler
 }

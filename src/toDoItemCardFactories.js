@@ -1,5 +1,5 @@
 import { getToDoItemByID } from "./allProjects";
-import { toggleCompleteStatusHandler, viewDetailsHandler } from "./toDoItemButtonHandlers.js"
+import { toggleCompleteStatusHandler, viewDetailsHandler, removeToDoItemHandler } from "./toDoItemButtonHandlers.js"
 import { createToDoItemEditDialog } from "./toDoItemCardComponentFactories.js"
 
 const createToDoItemCard = function (itemID = crypto.randomUUID()){
@@ -41,6 +41,10 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
         editDialog.showModal();
     });
 
+    let removeToDoItemButton = document.createElement("button");
+    removeToDoItemButton.textContent = "Remove To-do Item";
+    removeToDoItemButton.addEventListener("click", removeToDoItemHandler);
+
     for (const element of [
         title, 
         isComplete, 
@@ -49,6 +53,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
         toggleCompleteButton,
         viewDetailsButton,
         openEditDialogButton,
+        removeToDoItemButton,
         editDialog,
         details
     ]){

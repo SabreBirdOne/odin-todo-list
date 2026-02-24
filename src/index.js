@@ -6,5 +6,3 @@ import "./cards.css";
 
 loadHomePage();
 newDefaultProjectHandler();
-
-console.log(allProjects);

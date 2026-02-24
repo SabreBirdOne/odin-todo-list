@@ -12,8 +12,6 @@ function newBlankToDoItemHandler(event){
     let targetProject = getProjectByID(targetProjectID);
     targetProject.toDoItems.push(newToDoItem);
 
-    console.log(targetProject.toDoItems);
-
     // Create the new ToDoItemCard
     let newToDoItemCard = createToDoItemCard(newToDoItem.id);
     updateToDoItemCard(newToDoItem, newToDoItemCard);
