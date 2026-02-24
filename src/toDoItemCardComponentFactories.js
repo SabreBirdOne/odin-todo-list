@@ -2,8 +2,6 @@ import {createCheckListLine, createAddToChecklistDialog} from "./checklistCompon
 import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 import { createDialogButtonDiv } from "./otherHTMLFactories.js";
 
-
-
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
         const checklistLine = createCheckListLine(checklistItem, isItemCompleted);

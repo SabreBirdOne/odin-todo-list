@@ -1,5 +1,6 @@
 import {toggleChecklistItemHandler, removeChecklistItemHandler} from "./checklistButtonHandlers"
 import checkListManager from "./checkListManager";
+import { createDialogButtonDiv } from "./otherHTMLFactories.js";
 
 function createCheckListLine(checklistItem, isItemCompleted){
     let checklistLine = document.createElement("li");
