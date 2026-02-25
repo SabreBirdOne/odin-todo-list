@@ -1,7 +1,7 @@
 import { createCheckListLine, createAddToChecklistDialog} from "./checklistComponentFactories.js"
 import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 import { createDialogButtonDiv } from "./otherHTMLFactories.js";
-import { allProjects, getProjectByToDoItemID } from "./allProjects.js";
+
 
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
