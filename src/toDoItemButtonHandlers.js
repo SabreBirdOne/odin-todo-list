@@ -1,4 +1,4 @@
-import { getToDoItemByID, getProjectByToDoItemID } from "./allProjects";
+import allProjectsLookup from "./allProjectsLookup.js";
 import toDoItemManager from "./toDoItemManager.js";
 import projectManager from "./projectManager.js";
 import { updateToDoItemCard } from "./toDoItemCardUpdaters";
@@ -8,7 +8,7 @@ import { populateDetailsDiv } from "./toDoItemCardComponentFactories";
 function toggleCompleteStatusHandler(event){
     let toDoItemCard = event.target.parentNode;
     const toDoItemID = event.target.parentNode.dataset.itemID;
-    let toDoItem = getToDoItemByID(toDoItemID);
+    let toDoItem = allProjectsLookup.getToDoItemByID(toDoItemID);
     
     toDoItemManager.toggleCompletionStatus(toDoItem);
     updateToDoItemCard(toDoItem, toDoItemCard);
@@ -22,7 +22,7 @@ function viewDetailsHandler(event){
     if (viewDetailsButton.textContent === "View details"){
         // User wants to view details
         viewDetailsButton.textContent = "Close details";
-        let toDoItem = getToDoItemByID(toDoItemCard.dataset.itemID);
+        let toDoItem = allProjectsLookup.getToDoItemByID(toDoItemCard.dataset.itemID);
         populateDetailsDiv(toDoItem, detailsDiv);
 
     }
@@ -36,9 +36,13 @@ function viewDetailsHandler(event){
 
 function removeToDoItemHandler(event){
     let toDoItemCardToRemove = event.target.parentNode;
-    let toDoItemToRemove = getToDoItemByID(toDoItemCardToRemove.dataset.itemID);
-    
-    let targetProject = getProjectByToDoItemID(toDoItemCardToRemove.dataset.itemID)
+    let toDoItemToRemove = allProjectsLookup.getToDoItemByID(
+        toDoItemCardToRemove.dataset.itemID
+    );
+    let targetProject = allProjectsLookup.getProjectByToDoItemID(
+        toDoItemCardToRemove.dataset.itemID
+    );
+
     projectManager.removeToDoFromProject(targetProject, toDoItemToRemove);
 
     let targetProjectCard = toDoItemCardToRemove.parentNode.parentNode

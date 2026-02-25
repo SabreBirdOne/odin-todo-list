@@ -1,7 +1,7 @@
 import ToDoItem from "./toDoItem";
 import { createToDoItemCard } from "./toDoItemCardFactories";
 import { updateToDoItemCard } from "./toDoItemCardUpdaters";
-import { getProjectByID } from "./allProjects";
+import allProjectsLookup from "./allProjectsLookup";
 import projectManager from "./projectManager";
 
 function newBlankToDoItemHandler(event){
@@ -10,7 +10,7 @@ function newBlankToDoItemHandler(event){
 
     // Add the new ToDoItem to the Project
     const targetProjectID = event.target.parentNode.dataset.itemID;
-    let targetProject = getProjectByID(targetProjectID);
+    let targetProject = allProjectsLookup.getProjectByID(targetProjectID);
     projectManager.addToDoToProject(targetProject, newToDoItem)
 
     // Create the new ToDoItemCard

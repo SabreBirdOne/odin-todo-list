@@ -1,7 +1,7 @@
-import { allProjects, getProjectByToDoItemID } from "./allProjects.js";
+import allProjectsLookup from "./allProjectsLookup";
 
 function updateMoveToOtherProjectDialog(dialog, toDoItem){
-    let projectOfMovedToDo = getProjectByToDoItemID(toDoItem.id);
+    let projectOfMovedToDo = allProjectsLookup.getProjectByToDoItemID(toDoItem.id);
     let select = dialog.querySelector("select");
     while (select.firstChild){
         select.removeChild(select.firstChild);

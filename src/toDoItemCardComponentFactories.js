@@ -2,11 +2,10 @@ import { createCheckListLine, createAddToChecklistDialog} from "./checklistCompo
 import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 import { createDialogButtonDiv } from "./otherHTMLFactories.js";
 
-import { allProjects, getProjectByID, getProjectByToDoItemID } from "./allProjects.js";
+import allProjectsLookup from "./allProjectsLookup.js";
 import projectManager from "./projectManager.js";
 import toDoItemManager from "./toDoItemManager.js";
 import { updateProjectCard } from "./projectCardUpdaters.js";
-
 
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
@@ -57,10 +56,10 @@ function populateDetailsDiv(toDoItem, detailsDiv){
 }
 
 function createToDoItemEditDialog(toDoItem){
-    let returnDialog = document.createElement("dialog");
-    let returnDialogForm = document.createElement("form");
+    let dialog = document.createElement("dialog");
+    let dialogForm = document.createElement("form");
 
-    returnDialog.classList.add("toDoItemDialog");
+    dialog.classList.add("toDoItemDialog");
     
     for (const [stringField, details] of Object.entries({
         "title": ["Title:", "text"],
@@ -78,8 +77,8 @@ function createToDoItemEditDialog(toDoItem){
         input.id = stringField;
         input.value = toDoItem[stringField];
 
-        returnDialogForm.appendChild(label);
-        returnDialogForm.appendChild(input);
+        dialogForm.appendChild(label);
+        dialogForm.appendChild(input);
     }
 
     // The div for submit or cancel buttons
@@ -89,13 +88,13 @@ function createToDoItemEditDialog(toDoItem){
     
     saveButton.addEventListener("click", (event) => {
         event.preventDefault();
-        returnDialog.close(submitValue);
+        dialog.close(submitValue);
     });
 
-    returnDialog.addEventListener("close", (event) => {
-        if (returnDialog.returnValue === submitValue){
+    dialog.addEventListener("close", (event) => {
+        if (dialog.returnValue === submitValue){
             // Assign form values to the toDoItem and actually edit it here
-            const toDoItemArgs = returnDialog.querySelectorAll("input");
+            const toDoItemArgs = dialog.querySelectorAll("input");
             const elementsToUpdate = {
                 "title": toDoItemArgs[0].value,
                 "description": toDoItemArgs[1].value,
@@ -114,10 +113,10 @@ function createToDoItemEditDialog(toDoItem){
         }
     });
 
-    returnDialogForm.appendChild(buttonsDiv);
-    returnDialog.appendChild(returnDialogForm);
+    dialogForm.appendChild(buttonsDiv);
+    dialog.appendChild(dialogForm);
 
-    return returnDialog;
+    return dialog;
 }
 
 function createMoveToOtherProjectDialog(toDoItem){
@@ -144,7 +143,7 @@ function createMoveToOtherProjectDialog(toDoItem){
 
     dialog.addEventListener("close", (event) => {
         if (dialog.returnValue === submitValue){
-            let sourceProject = getProjectByToDoItemID(toDoItem.id);
+            let sourceProject = allProjectsLookup.getProjectByToDoItemID(toDoItem.id);
             const destinationProjectID = dialog.querySelector("select").value;
 
             if (sourceProject.id !== destinationProjectID){
