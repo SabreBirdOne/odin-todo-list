@@ -5,11 +5,16 @@ const projectManager = (function (){
             project.toDoItems.splice(indexToRemove, 1);
         }
         // Add code for (updating local storage) here.
+        console.log("Will update this project for local storage:");
+        console.log(project);
     }
 
     const addToDoToProject = function(project, toDoItem){
         project.toDoItems.push(toDoItem);
         // Add code for (updating local storage) here.
+        console.log("Will update this project for local storage:");
+        console.log(project);
+
     }
 
     return {

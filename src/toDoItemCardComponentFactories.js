@@ -4,6 +4,7 @@ import { createDialogButtonDiv } from "./otherHTMLFactories.js";
 
 import { allProjects, getProjectByID, getProjectByToDoItemID } from "./allProjects.js";
 import projectManager from "./projectManager.js";
+import toDoItemManager from "./toDoItemManager.js";
 import { updateProjectCard } from "./projectCardUpdaters.js";
 
 
@@ -103,12 +104,8 @@ function createToDoItemEditDialog(toDoItem){
                 "notes": toDoItemArgs[4].value
             }
 
-            for(const key of Object.keys(elementsToUpdate)){
-                if(elementsToUpdate[key] && Object.hasOwn(toDoItem, key)){
-                    toDoItem[key] = elementsToUpdate[key];
-                }
-            }
-
+            toDoItemManager.updateToDoItem(toDoItem, elementsToUpdate);
+            
             // update the toDoItemCard too after editting toDoItem
             let toDoItemCard = document.querySelector(
                 `div.toDoItemCard[data-item-i-d = "${toDoItem.id}"]`
