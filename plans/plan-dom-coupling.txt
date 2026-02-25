@@ -79,8 +79,8 @@ So now, I'm salvaging the ToDoItemCard class, and abandon the
 ProjectCard class. 
 
 Program Flow:
-Initial page load > managers > create/update data > update Cards
-Button presses on cards > managers > data > update Cards
+Initial page load > managers > data > update Cards
+Button presses on cards > button handlers > managers > data > update Cards
 
 Updated diagram: 
     allProjects.js <----+
@@ -108,4 +108,9 @@ So, what's going to be inside this bunch of bundles?
         For example, todos can appear in the wrong projects in the DOM.
 
 - button handlers:
-    they respond to buttons being pressed in the DOM.
+    they respond to buttons being pressed in the DOM. 
+    They should try calling upon managers
+
+- managers:
+    they will help manage the data objects and be called upon by the DOM cards
+    Also to call upon updaters of local storage
