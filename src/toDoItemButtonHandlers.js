@@ -1,4 +1,5 @@
 import { getToDoItemByID, getProjectByToDoItemID } from "./allProjects";
+import toDoItemManager from "./toDoItemManager.js";
 import projectManager from "./projectManager.js";
 import { updateToDoItemCard } from "./toDoItemCardUpdaters";
 import { updateProjectCard } from "./projectCardUpdaters.js";
@@ -9,7 +10,7 @@ function toggleCompleteStatusHandler(event){
     const toDoItemID = event.target.parentNode.dataset.itemID;
     let toDoItem = getToDoItemByID(toDoItemID);
     
-    toDoItem.isComplete = !toDoItem.isComplete;
+    toDoItemManager.toggleCompletionStatus(toDoItem);
     updateToDoItemCard(toDoItem, toDoItemCard);
 }   
 
