@@ -4,7 +4,7 @@ import Project from "./project.js";
 import {createProjectCard} from "./projectCardFactories.js";
 import {updateProjectCard} from "./projectCardUpdaters.js";
 
-import allProjects from "./allProjects.js";
+import allProjectsManager from "./allProjectsManager.js";
 import checkListManager from "./checkListManager.js";
 
 function newDefaultProjectHandler (){
@@ -25,7 +25,7 @@ function newDefaultProjectHandler (){
     projectNemo.description = "Default description";
     projectNemo.toDoItems = [toDoItem_1, toDoItem_2, toDoItem_3];
 
-    allProjects.push(projectNemo);
+    allProjectsManager.addNewProject(projectNemo);
 
     let projectNemoCard = createProjectCard(projectNemo.id);
     updateProjectCard(projectNemo, projectNemoCard);
@@ -37,7 +37,7 @@ function newBlankProjectHandler (){
     const newBlankProject = new Project();
 
     // Adds new blank project to allProjects
-    allProjects.push(newBlankProject);
+    allProjectsManager.addNewProject(newBlankProject);
 
     // create new blank project card with the blank project and add to allProjectsDiv
     const newBlankProjectCard = createProjectCard(newBlankProject.id);
