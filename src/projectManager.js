@@ -4,10 +4,17 @@ const projectManager = (function (){
         if (indexToRemove > -1){
             project.toDoItems.splice(indexToRemove, 1);
         }
+        // Add code for (updating local storage) here.
+    }
+
+    const addToDoToProject = function(project, toDoItem){
+        project.toDoItems.push(toDoItem);
+        // Add code for (updating local storage) here.
     }
 
     return {
-        removeToDoFromProject
+        removeToDoFromProject,
+        addToDoToProject
     }
 })();
 

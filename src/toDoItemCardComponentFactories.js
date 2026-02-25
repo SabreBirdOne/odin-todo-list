@@ -118,6 +118,10 @@ function createToDoItemEditDialog(toDoItem){
     return returnDialog;
 }
 
+function createMoveToOtherProjectDialog(toDoItem){
+    // need a dialog with a drop down listing all projects to move to.
+}
+
 export {
-    populateDetailsDiv, createToDoItemEditDialog
+    populateDetailsDiv, createToDoItemEditDialog, createMoveToOtherProjectDialog
 }

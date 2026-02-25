@@ -45,6 +45,10 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     removeToDoItemButton.textContent = "Remove To-do Item";
     removeToDoItemButton.addEventListener("click", removeToDoItemHandler);
 
+    let moveToOtherProjectButton = document.createElement("button");
+    moveToOtherProjectButton.textContent = "Move to other project";
+    // need a dialog with a drop down listing all projects to move to.
+
     for (const element of [
         title, 
         isComplete, 
@@ -54,6 +58,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
         viewDetailsButton,
         openEditDialogButton,
         removeToDoItemButton,
+        moveToOtherProjectButton,
         editDialog,
         details
     ]){
