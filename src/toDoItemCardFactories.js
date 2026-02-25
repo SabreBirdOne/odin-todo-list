@@ -1,12 +1,17 @@
-import { getToDoItemByID } from "./allProjects";
-import { toggleCompleteStatusHandler, viewDetailsHandler, removeToDoItemHandler } from "./toDoItemButtonHandlers.js"
+import allProjectsLookup from "./allProjectsLookup.js"
+import { 
+    toggleCompleteStatusHandler, 
+    viewDetailsHandler, 
+    removeToDoItemHandler 
+} from "./toDoItemButtonHandlers.js"
+
 import { createToDoItemEditDialog, createMoveToOtherProjectDialog } from "./toDoItemCardComponentFactories.js"
 import { updateMoveToOtherProjectDialog } from "./dialogUpdaters.js"
 
 const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let div = document.createElement("div");
     div.dataset.itemID = itemID;
-    let toDoItem = getToDoItemByID(itemID)
+    let toDoItem = allProjectsLookup.getToDoItemByID(itemID)
 
     let title = document.createElement("h4");
     let isComplete = document.createElement("em");
