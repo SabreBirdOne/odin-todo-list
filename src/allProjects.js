@@ -1,1 +1,2 @@
-export default allProjects = [];
+let allProjects = [];
+export default allProjects;
