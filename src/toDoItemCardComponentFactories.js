@@ -147,7 +147,7 @@ function createMoveToOtherProjectDialog(toDoItem){
             const destinationProjectID = dialog.querySelector("select").value;
 
             if (sourceProject.id !== destinationProjectID){
-                let destinationProject = getProjectByID(destinationProjectID);
+                let destinationProject = allProjectsLookup.getProjectByID(destinationProjectID);
                 projectManager.addToDoToProject(destinationProject, toDoItem);
                 projectManager.removeToDoFromProject(sourceProject, toDoItem);
 

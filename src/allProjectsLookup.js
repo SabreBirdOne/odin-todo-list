@@ -26,8 +26,12 @@ const allProjectsLookup = (function(){
         return undefined;
     }
 
+    const getAllProjects = function(){
+        return allProjects;
+    }
+
     return {
-        getProjectByID, getToDoItemByID, getProjectByToDoItemID
+        getProjectByID, getToDoItemByID, getProjectByToDoItemID, getAllProjects
     };
 })();
 

@@ -8,7 +8,7 @@ function updateMoveToOtherProjectDialog(dialog, toDoItem){
     }
 
     if (projectOfMovedToDo.id){
-        for (const otherProject of allProjects){
+        for (const otherProject of allProjectsLookup.getAllProjects()){
             let newOption = document.createElement("option");
             newOption.value = otherProject.id;
             if (otherProject.id !== projectOfMovedToDo.id){
