@@ -1,7 +1,7 @@
 import { createCheckListLine, createAddToChecklistDialog} from "./checklistComponentFactories.js"
 import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 import { createDialogButtonDiv } from "./otherHTMLFactories.js";
-import { allProjects } from "./allProjects.js";
+import { allProjects, getProjectByToDoItemID } from "./allProjects.js";
 
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
@@ -128,8 +128,11 @@ function createMoveToOtherProjectDialog(toDoItem){
     label.htmlFor = "name";
     label.textContent = "Selet project to move to-do item to:";
 
-    // Add the drop down showing all projects here. 
-    // Don't forget to append this to dialogForm
+    /* 
+        This select element needs to be updated by the button calling 
+        showModal on this dialog after construction.
+    */
+    let select = document.createElement("select");
 
     let submitValue = "moveToDo";
     let buttonsDiv = createDialogButtonDiv(submitValue, undefined, "Move to-do");
@@ -145,7 +148,7 @@ function createMoveToOtherProjectDialog(toDoItem){
             console.log("moveToDo returnValue in dialog");
         }
     });
-    for (const element of [label, buttonsDiv]){
+    for (const element of [label, select, buttonsDiv]){
         dialogForm.appendChild(element);
     }
     

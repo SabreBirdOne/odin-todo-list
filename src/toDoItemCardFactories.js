@@ -1,6 +1,6 @@
 import { getToDoItemByID } from "./allProjects";
 import { toggleCompleteStatusHandler, viewDetailsHandler, removeToDoItemHandler } from "./toDoItemButtonHandlers.js"
-import { createToDoItemEditDialog } from "./toDoItemCardComponentFactories.js"
+import { createToDoItemEditDialog, createMoveToOtherProjectDialog } from "./toDoItemCardComponentFactories.js"
 
 const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let div = document.createElement("div");
@@ -12,6 +12,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let priority = document.createElement("p");
     let details = document.createElement("div");
     let editDialog = createToDoItemEditDialog(getToDoItemByID(itemID));
+    let moveToOtherProjectDialog = createMoveToOtherProjectDialog(getToDoItemByID(itemID));
     
     div.classList.add("toDoItemCard");
     
@@ -47,7 +48,12 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
 
     let moveToOtherProjectButton = document.createElement("button");
     moveToOtherProjectButton.textContent = "Move to other project";
-    // need a dialog with a drop down listing all projects to move to.
+    moveToOtherProjectButton.addEventListener("click", () => {
+        // Need to update the select element within moveToOtherProjectDialog
+        // So that the dialog gets the latest list of other projects in the drop down
+        moveToOtherProjectDialog.showModal();
+    });
+
 
     for (const element of [
         title, 
@@ -60,6 +66,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
         removeToDoItemButton,
         moveToOtherProjectButton,
         editDialog,
+        moveToOtherProjectDialog,
         details
     ]){
         div.appendChild(element);
