@@ -2,6 +2,10 @@ import { createCheckListLine, createAddToChecklistDialog} from "./checklistCompo
 import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 import { createDialogButtonDiv } from "./otherHTMLFactories.js";
 
+import { allProjects, getProjectByID, getProjectByToDoItemID } from "./allProjects.js";
+import projectManager from "./projectManager.js";
+import { updateProjectCard } from "./projectCardUpdaters.js";
+
 
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
@@ -128,10 +132,8 @@ function createMoveToOtherProjectDialog(toDoItem){
     label.htmlFor = "name";
     label.textContent = "Selet project to move to-do item to:";
 
-    /* 
-        This select element needs to be updated by the button calling 
-        showModal on this dialog after construction.
-    */
+    /*  This select element needs to be updated by the button calling 
+        showModal on this dialog after construction. */
     let select = document.createElement("select");
 
     let submitValue = "moveToDo";
@@ -145,7 +147,22 @@ function createMoveToOtherProjectDialog(toDoItem){
 
     dialog.addEventListener("close", (event) => {
         if (dialog.returnValue === submitValue){
-            console.log("moveToDo returnValue in dialog");
+            let sourceProject = getProjectByToDoItemID(toDoItem.id);
+            const destinationProjectID = dialog.querySelector("select").value;
+
+            if (sourceProject.id !== destinationProjectID){
+                let destinationProject = getProjectByID(destinationProjectID);
+                projectManager.addToDoToProject(destinationProject, toDoItem);
+                projectManager.removeToDoFromProject(sourceProject, toDoItem);
+
+                for (const project of [sourceProject, destinationProject]){
+                    let projectCard = document.querySelector(
+                        `div.projectCard[data-item-i-d = "${project.id}"]`
+                    );
+                    updateProjectCard(project, projectCard);
+                }
+            }
+
         }
     });
     for (const element of [label, select, buttonsDiv]){

@@ -12,9 +12,7 @@ function updateMoveToOtherProjectDialog(dialog, toDoItem){
             let newOption = document.createElement("option");
             newOption.value = otherProject.id;
             if (otherProject.id !== projectOfMovedToDo.id){
-                console.log("Create a new option for this other project:");
-                console.log(otherProject);
-                newOption.textContent = otherProject.name
+                newOption.textContent = otherProject.name;
             }
             else {
                 newOption.textContent = "Current Project";
