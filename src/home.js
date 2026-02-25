@@ -1,21 +1,27 @@
 import createDefaultProject from "./defaultProjectFactories.js";
 import allProjectsManager from "./allProjectsManager.js";
+
 import { createProjectCard } from "./projectCardFactories.js";
 import { updateProjectCard } from "./projectCardUpdaters.js";
+import { createNewProjectDialog } from "./homePageComponentFactories.js";
 
 export default function loadHomePage(){
     // init data:
     let projectNemo = createDefaultProject();
     allProjectsManager.addNewProject(projectNemo);
 
+    /* new project dialog */
+    const newProjectDialog = createNewProjectDialog();
+
     /* New Project button */
-    const newBlankProjectButton = document.createElement("button");
-    newBlankProjectButton.textContent = "New Blank Project";
-    newBlankProjectButton.id = "newBlankProjectButton";
+    const newProjectButton = document.createElement("button");
+    newProjectButton.textContent = "New Project";
+    newProjectButton.id = "newProjectButton";
     
     // Add event listeners here
-    newBlankProjectButton.addEventListener("click", ()=>{});
-
+    newProjectButton.addEventListener("click", () => {
+        newProjectDialog.showModal();
+    });
 
     /* All Projects header */
     const allProjectsHeader = document.createElement("h1");
@@ -32,7 +38,8 @@ export default function loadHomePage(){
     /* Add every element into body */
     const body = document.querySelector("body");
     for (const element of [
-        newBlankProjectButton,
+        newProjectButton,
+        newProjectDialog,
         allProjectsHeader,
         allProjectsDiv,
     ]){

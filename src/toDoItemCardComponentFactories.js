@@ -1,4 +1,4 @@
-import { createCheckListLine, createAddToChecklistDialog} from "./checklistComponentFactories.js"
+import { createCheckListLine, createAddToChecklistDialog } from "./checklistComponentFactories.js"
 import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 import { createDialogButtonDiv } from "./otherHTMLFactories.js";
 
@@ -91,7 +91,7 @@ function createToDoItemEditDialog(toDoItem){
         dialog.close(submitValue);
     });
 
-    dialog.addEventListener("close", (event) => {
+    dialog.addEventListener("close", () => {
         if (dialog.returnValue === submitValue){
             // Assign form values to the toDoItem and actually edit it here
             const toDoItemArgs = dialog.querySelectorAll("input");
