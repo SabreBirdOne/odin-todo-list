@@ -1,6 +1,7 @@
-import {createCheckListLine, createAddToChecklistDialog} from "./checklistComponentFactories.js"
+import { createCheckListLine, createAddToChecklistDialog} from "./checklistComponentFactories.js"
 import { updateToDoItemCard } from "./toDoItemCardUpdaters.js";
 import { createDialogButtonDiv } from "./otherHTMLFactories.js";
+import { allProjects } from "./allProjects.js";
 
 function populateChecklistElement(toDoItem, targetDiv){
     for (let [checklistItem, isItemCompleted] of Object.entries(toDoItem.checklist)){
@@ -120,6 +121,36 @@ function createToDoItemEditDialog(toDoItem){
 
 function createMoveToOtherProjectDialog(toDoItem){
     // need a dialog with a drop down listing all projects to move to.
+    let dialog = document.createElement("dialog");
+    let dialogForm = document.createElement("form");
+
+    let label = document.createElement("label");
+    label.htmlFor = "name";
+    label.textContent = "Selet project to move to-do item to:";
+
+    // Add the drop down showing all projects here. 
+    // Don't forget to append this to dialogForm
+
+    let submitValue = "moveToDo";
+    let buttonsDiv = createDialogButtonDiv(submitValue, undefined, "Move to-do");
+    let moveToDoButton = buttonsDiv.querySelector(".submitButton");
+
+    moveToDoButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        dialog.close(submitValue);
+    });
+
+    dialog.addEventListener("close", (event) => {
+        if (dialog.returnValue === submitValue){
+            console.log("moveToDo returnValue in dialog");
+        }
+    });
+    for (const element of [label, buttonsDiv]){
+        dialogForm.appendChild(element);
+    }
+    
+    dialog.appendChild(dialogForm);
+    return dialog;
 }
 
 export {
