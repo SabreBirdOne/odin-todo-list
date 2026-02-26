@@ -12,6 +12,12 @@ const createProjectCard = function (itemID = crypto.randomUUID()){
     newBlankToDoItemButton.textContent = "New Blank To-do";
     newBlankToDoItemButton.addEventListener("click", newBlankToDoItemHandler);
 
+    let removeProjectButton = document.createElement("button");
+    removeProjectButton.textContent = "Remove Project";
+    removeProjectButton.addEventListener("click", ()=>{
+        console.log("removeProjectButton pressed");
+    });
+
     // the div with all the toDoItems
     let toDoItemCards = document.createElement("div");
     
@@ -24,6 +30,7 @@ const createProjectCard = function (itemID = crypto.randomUUID()){
         name, 
         description, 
         newBlankToDoItemButton, 
+        removeProjectButton,
         toDoItemCards
     ]){
         div.appendChild(element);
