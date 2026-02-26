@@ -2,6 +2,7 @@ import ToDoItem from "./toDoItem";
 import { createToDoItemCard } from "./toDoItemCardFactories";
 import { updateToDoItemCard } from "./toDoItemCardUpdaters";
 import allProjectsLookup from "./allProjectsLookup";
+import allProjectsManager from "./allProjectsManager";
 import projectManager from "./projectManager";
 
 function newBlankToDoItemHandler(event){
@@ -22,6 +23,17 @@ function newBlankToDoItemHandler(event){
     toDoItemCardsDiv.appendChild(newToDoItemCard);
 }
 
+function removeProjectHandler(event){
+    let projectCard = event.target.parentNode;
+    let project = allProjectsLookup.getProjectByID(projectCard.dataset.itemID);
+
+    allProjectsManager.removeProject(project);
+    
+    let allProjectsDiv = projectCard.parentNode;
+    allProjectsDiv.removeChild(projectCard);    
+}
+
 export {
-    newBlankToDoItemHandler
+    newBlankToDoItemHandler,
+    removeProjectHandler
 }

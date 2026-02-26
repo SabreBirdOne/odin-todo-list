@@ -1,4 +1,8 @@
-import { newBlankToDoItemHandler } from "./projectButtonHandlers";
+import { 
+    newBlankToDoItemHandler, 
+    removeProjectHandler 
+} 
+from "./projectButtonHandlers";
 
 const createProjectCard = function (itemID = crypto.randomUUID()){
     let div = document.createElement("div");
@@ -14,9 +18,7 @@ const createProjectCard = function (itemID = crypto.randomUUID()){
 
     let removeProjectButton = document.createElement("button");
     removeProjectButton.textContent = "Remove Project";
-    removeProjectButton.addEventListener("click", ()=>{
-        console.log("removeProjectButton pressed");
-    });
+    removeProjectButton.addEventListener("click", removeProjectHandler);
 
     // the div with all the toDoItems
     let toDoItemCards = document.createElement("div");
