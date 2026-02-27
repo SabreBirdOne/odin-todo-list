@@ -1,11 +1,11 @@
 import allProjects from "./allProjects";
+import localStorageManager from "./localStorageManager";
 
 const allProjectsManager = (function(){
     const addNewProject = function(newProject){
         allProjects.push(newProject);
-        // Update local storage
-        console.log("Will Update local storage with this new project:");
-        console.log(newProject);
+        
+        localStorageManager.updateAllProjectsInLocalStorage();
     }
 
     const removeProject = function(project){
@@ -15,8 +15,7 @@ const allProjectsManager = (function(){
         if (indexToRemove > -1){
             allProjects.splice(indexToRemove, 1);
             
-            console.log("Will update local storage with allProjects:");
-            console.log(allProjects);
+            localStorageManager.updateAllProjectsInLocalStorage();
         }
     }
     

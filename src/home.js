@@ -34,7 +34,6 @@ export default function loadHomePage(){
     allProjectsDiv.id = "allProjectsDiv";
 
     // If nothing in local storage, populate with defaults
-    console.log(emptyLocalStorage);
     if (emptyLocalStorage){
         let projectNemo = createDefaultProject();
         allProjectsManager.addNewProject(projectNemo);
@@ -44,7 +43,6 @@ export default function loadHomePage(){
         allProjectsDiv.appendChild(projectNemoCard);
     }
     else {
-        console.log(allProjectsLookup.getAllProjects());
         for (const project of allProjectsLookup.getAllProjects()){
             let newProjectCard = createProjectCard(project.id);
             updateProjectCard(project, newProjectCard);

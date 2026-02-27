@@ -5,6 +5,9 @@ import Project from "./project";
 const localStorageManager = (function (){
     const updateAllProjectsInLocalStorage = function(){
         localStorage.setItem("allProjects", JSON.stringify(allProjects));
+        if (allProjects.length <= 0){
+            localStorage.removeItem("allProjects");
+        }
     }
 
     const loadAllProjectsFromLocalStorage = function(){
@@ -15,7 +18,6 @@ const localStorageManager = (function (){
                 So must convert them back with constructors.
                 AOL means As Ojbect Literal
             */
-            console.log("localStorage populated")
             for (const projectAOL of loadedFromStorage){
                 // Construct the ToDoItem objects first
                 let toDoItemsForProject = [];
