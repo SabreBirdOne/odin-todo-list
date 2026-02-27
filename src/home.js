@@ -1,5 +1,7 @@
 import createDefaultProject from "./defaultProjectFactories.js";
 import allProjectsManager from "./allProjectsManager.js";
+import allProjectsLookup from "./allProjectsLookup.js";
+import localStorageManager from "./localStorageManager.js";
 
 import { createProjectCard } from "./projectCardFactories.js";
 import { updateProjectCard } from "./projectCardUpdaters.js";
@@ -7,8 +9,8 @@ import { createNewProjectDialog } from "./homePageComponentFactories.js";
 
 export default function loadHomePage(){
     // init data:
-    let projectNemo = createDefaultProject();
-    allProjectsManager.addNewProject(projectNemo);
+    localStorageManager.loadAllProjectsFromLocalStorage();
+    const emptyLocalStorage = allProjectsLookup.getAllProjects().length === 0;
 
     /* new project dialog */
     const newProjectDialog = createNewProjectDialog();
@@ -31,9 +33,25 @@ export default function loadHomePage(){
     const allProjectsDiv = document.createElement("div");
     allProjectsDiv.id = "allProjectsDiv";
 
-    let projectNemoCard = createProjectCard(projectNemo.id);
-    updateProjectCard(projectNemo, projectNemoCard);
-    allProjectsDiv.appendChild(projectNemoCard);
+    // If nothing in local storage, populate with defaults
+    console.log(emptyLocalStorage);
+    if (emptyLocalStorage){
+        let projectNemo = createDefaultProject();
+        allProjectsManager.addNewProject(projectNemo);
+
+        let projectNemoCard = createProjectCard(projectNemo.id);
+        updateProjectCard(projectNemo, projectNemoCard);
+        allProjectsDiv.appendChild(projectNemoCard);
+    }
+    else {
+        console.log(allProjectsLookup.getAllProjects());
+        for (const project of allProjectsLookup.getAllProjects()){
+            let newProjectCard = createProjectCard(project.id);
+            updateProjectCard(project, newProjectCard);
+            allProjectsDiv.appendChild(newProjectCard);
+        }
+    }
+    
 
     /* Add every element into body */
     const body = document.querySelector("body");
