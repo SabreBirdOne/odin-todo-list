@@ -1,3 +1,5 @@
+import localStorageManager from "./localStorageManager";
+
 const checkListManager = (function(){
     // Responsibility: manages ToDoItem's checklist
 
@@ -9,18 +11,21 @@ const checkListManager = (function(){
     const addCheckListItem = function (toDoItem, itemName){
         if (!_hasCheckListItem(toDoItem, itemName)){
             toDoItem.checklist[itemName] = false;
+            localStorageManager.updateAllProjectsInLocalStorage();
         }
     };
 
     const toggleCheckListItem = function (toDoItem, itemName){
         if (_hasCheckListItem(toDoItem, itemName)){
             toDoItem.checklist[itemName] = !toDoItem.checklist[itemName];
+            localStorageManager.updateAllProjectsInLocalStorage();
         }
     };
 
     const removeCheckListItem = function (toDoItem, itemName){
         if (_hasCheckListItem(toDoItem, itemName)){
             delete toDoItem.checklist[itemName];
+            localStorageManager.updateAllProjectsInLocalStorage();
         }
     };
 
@@ -29,6 +34,7 @@ const checkListManager = (function(){
             && !_hasCheckListItem(toDoItem, newItemName)){
             toDoItem.checklist[newItemName] = toDoItem.checklist[oldItemName];
             delete toDoItem.checklist[oldItemName];
+            localStorageManager.updateAllProjectsInLocalStorage();
         }
     }
 
