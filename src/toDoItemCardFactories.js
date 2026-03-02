@@ -50,7 +50,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     });
 
     let removeToDoItemButton = document.createElement("button");
-    removeToDoItemButton.textContent = "Remove To-do Item";
+    removeToDoItemButton.textContent = "Remove To-do";
     removeToDoItemButton.addEventListener("click", removeToDoItemHandler);
 
     let moveToOtherProjectButton = document.createElement("button");
