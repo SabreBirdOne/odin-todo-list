@@ -1,9 +1,9 @@
+import localStorageManager from "./localStorageManager";
+
 const toDoItemManager = (function(){
     const toggleCompletionStatus = function(toDoItem){
         toDoItem.isComplete = !toDoItem.isComplete;
-        // Need to update local storage 
-        console.log("Will update local storage for toDoItem:");
-        console.log(toDoItem);
+        localStorageManager.updateAllProjectsInLocalStorage();
     };
 
     const updateToDoItem = function (toDoItem, args){
@@ -13,9 +13,7 @@ const toDoItemManager = (function(){
                 toDoItem[key] = args[key];
             }
         }
-        // Need to update local storage
-        console.log("Will update local storage for toDoItem:");
-        console.log(toDoItem);
+        localStorageManager.updateAllProjectsInLocalStorage();
     }
 
 
