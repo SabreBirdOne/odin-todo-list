@@ -29,6 +29,7 @@ function createNewProjectDialog(){
         submitValue, undefined, "Create New Project"
     );
     let createButton = buttonsDiv.querySelector(".submitButton");
+    createButton.classList.add("createButton");
 
     createButton.addEventListener("click", (event) => {
         event.preventDefault();

@@ -27,6 +27,9 @@ const createProjectCard = function (itemID = crypto.randomUUID()){
     name.classList.add("name");
     description.classList.add("description");
     toDoItemCards.classList.add("toDoItemCards");
+
+    newBlankToDoItemButton.classList.add("createButton");
+    removeProjectButton.classList.add("removeButton");
       
     for (const element of [
         name, 

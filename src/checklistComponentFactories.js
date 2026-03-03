@@ -18,10 +18,12 @@ function createCheckListLine(checklistItem, isItemCompleted){
     let toggleCompletedButton = document.createElement("button");
     toggleCompletedButton.textContent = "Toggle Completion Status";
     toggleCompletedButton.addEventListener("click", toggleChecklistItemHandler);
+    toggleCompletedButton.classList.add("editButton");
 
     let removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
     removeButton.addEventListener("click", removeChecklistItemHandler);
+    removeButton.classList.add("removeButton");
 
     for (const element of [
         checklistItemLabel,
@@ -53,6 +55,7 @@ function createAddToChecklistDialog(toDoItem){
     let submitValue = "add";
     let buttonsDiv = createDialogButtonDiv(submitValue, undefined, "Add");
     let addButton = buttonsDiv.querySelector(".submitButton");
+    addButton.classList.add("createButton");
 
     addButton.addEventListener("click", (event) => {
         event.preventDefault();

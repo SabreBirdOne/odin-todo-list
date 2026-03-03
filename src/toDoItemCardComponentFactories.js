@@ -37,6 +37,7 @@ function populateDetailsDiv(toDoItem, detailsDiv){
     openAddToChecklistDialogButton.addEventListener("click", () => {
         addToChecklistDialog.showModal();
     });
+    openAddToChecklistDialogButton.classList.add("createButton");
 
     // Build checklist
     populateChecklistElement(toDoItem, checklist);

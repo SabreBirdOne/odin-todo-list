@@ -38,6 +38,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     let toggleCompleteButton = document.createElement("button");
     toggleCompleteButton.textContent = "Toggle Completion Status";
     toggleCompleteButton.addEventListener("click", toggleCompleteStatusHandler);
+    toggleCompleteButton.classList.add("editButton");
 
     let viewDetailsButton = document.createElement("button");
     viewDetailsButton.textContent = "View details";
@@ -48,10 +49,12 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
     openEditDialogButton.addEventListener("click", () => {
         editDialog.showModal();
     });
+    openEditDialogButton.classList.add("editButton");
 
     let removeToDoItemButton = document.createElement("button");
     removeToDoItemButton.textContent = "Remove To-do";
     removeToDoItemButton.addEventListener("click", removeToDoItemHandler);
+    removeToDoItemButton.classList.add("removeButton");
 
     let moveToOtherProjectButton = document.createElement("button");
     moveToOtherProjectButton.textContent = "Move to other project";
@@ -61,6 +64,7 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
         updateMoveToOtherProjectDialog(moveToOtherProjectDialog, toDoItem);
         moveToOtherProjectDialog.showModal();
     });
+    moveToOtherProjectButton.classList.add("editButton");
 
 
     for (const element of [
@@ -68,11 +72,11 @@ const createToDoItemCard = function (itemID = crypto.randomUUID()){
         isComplete, 
         dueDate, 
         priority, 
-        toggleCompleteButton,
         viewDetailsButton,
+        toggleCompleteButton,
         openEditDialogButton,
-        removeToDoItemButton,
         moveToOtherProjectButton,
+        removeToDoItemButton,
         editDialog,
         moveToOtherProjectDialog,
         details

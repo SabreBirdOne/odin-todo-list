@@ -18,7 +18,7 @@ export default function loadHomePage(){
     /* New Project button */
     const newProjectButton = document.createElement("button");
     newProjectButton.textContent = "New Project";
-    newProjectButton.id = "newProjectButton";
+    newProjectButton.classList.add("createButton");
     
     // Add event listeners here
     newProjectButton.addEventListener("click", () => {
