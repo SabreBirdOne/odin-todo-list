@@ -54,9 +54,9 @@ export default function loadHomePage(){
     /* Add every element into body */
     const body = document.querySelector("body");
     for (const element of [
+        allProjectsHeader,
         newProjectButton,
         newProjectDialog,
-        allProjectsHeader,
         allProjectsDiv,
     ]){
         body.appendChild(element);

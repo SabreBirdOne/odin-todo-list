@@ -3,5 +3,6 @@ import "./cards.css";
 import "./buttons.css";
 import "./checklist.css";
 import "./allProjectsDiv.css";
+import "./home.css"
 
 loadHomePage();
