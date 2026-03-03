@@ -2,6 +2,6 @@ div#allProjectsDiv {
     align-self: stretch;
 
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 30fr));
     gap: 20px;
 }
