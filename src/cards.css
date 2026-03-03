@@ -10,7 +10,7 @@ div.projectCard {
 }
 
 div.toDoItemCard {
-    margin: 1rem;
+    margin: 1rem 0;
 
     border: 2px solid black;
     border-radius: 20px;
