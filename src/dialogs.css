@@ -1,0 +1,10 @@
+dialog {
+    padding: 0.5rem 1rem;
+}
+
+dialog form {
+    width: 33vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
