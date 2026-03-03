@@ -1,0 +1,4 @@
+.details ul li div {
+    display: flex;
+    gap: 2rem;
+}

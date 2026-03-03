@@ -7,9 +7,12 @@ function createCheckListLine(checklistItem, isItemCompleted){
         
     let checklistItemLabel = document.createElement("p");
     let isItemCompletedText = document.createElement("p");
+    let checklistItemInfo = document.createElement("div");
     
     checklistItemLabel.classList.add("checklistItemLabel");
     isItemCompletedText.classList.add("isItemCompletedText");
+    checklistItemInfo.appendChild(checklistItemLabel);
+    checklistItemInfo.appendChild(isItemCompletedText);
     
     checklistItemLabel.textContent = checklistItem;
     isItemCompletedText.textContent = isItemCompleted ? "Done" : "Not done";
@@ -26,8 +29,7 @@ function createCheckListLine(checklistItem, isItemCompleted){
     removeButton.classList.add("removeButton");
 
     for (const element of [
-        checklistItemLabel,
-        isItemCompletedText,
+        checklistItemInfo,
         toggleCompletedButton,
         removeButton
     ]){
